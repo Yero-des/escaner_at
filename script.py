@@ -37,10 +37,11 @@ def centrar_ventana(ventana, ancho, alto):
 root = tk.Tk()
 root.title(f"Escáner AT")
 root.iconbitmap(icon_path)
-centrar_ventana(root, 400, 300)
+root.resizable(False, False)
+centrar_ventana(root, 400, 350)
 
 # Función para seleccionar la carpeta destino al iniciar la app
-def seleccionar_carpeta_destino():
+def seleccionar_carpeta_destino(tk):
 
     global carpeta_destino
     global carpeta_actual
@@ -48,6 +49,9 @@ def seleccionar_carpeta_destino():
     carpeta_destino = filedialog.askdirectory(title="Selecciona la carpeta destino")
     subcarpetas = str.split(carpeta_destino,"/")
     carpeta_actual = subcarpetas[-1]
+
+    label_carpeta = tk.Label(root, text=carpeta_actual, font=("Arial", 12), fg=('red'))  # Fuente de 10px
+    label_carpeta.pack(pady=5)
 
     if not carpeta_destino:
         messagebox.showerror("Error", "Debes seleccionar una carpeta de destino.")
@@ -97,6 +101,7 @@ def manejar_escaneo_especial():
             ventana_opciones = tk.Toplevel(root)
             ventana_opciones.title("Seleccionar información")
             ventana_opciones.iconbitmap(icon_path)
+            ventana_opciones.resizable(False, False)
             centrar_ventana(ventana_opciones, 300, 200)
 
             ventana_opciones.grab_set()

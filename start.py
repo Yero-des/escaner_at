@@ -15,8 +15,6 @@ def actualizar_reloj():
   label_fecha.config(text=fecha_formateada)
   root.after(1000, actualizar_reloj)  # Llama a esta función nuevamente en 1 segundo
 
-# Seleccionar carpeta destino al inicio
-root.after(100, seleccionar_carpeta_destino)  # Iniciar la selección de carpeta después de 100 ms
 
 # Cargar imagen
 imagen_original = Image.open(img_path)  # Reemplaza con la ruta de tu imagen
@@ -26,6 +24,9 @@ imagen = ImageTk.PhotoImage(imagen_redimensionada)
 # Etiqueta para mostrar la imagen
 label_imagen = tk.Label(root, image=imagen)
 label_imagen.pack(pady=5)  # La imagen se coloca en la parte superior
+
+# Seleccionar carpeta destino al inicio
+root.after(100, seleccionar_carpeta_destino(tk))  # Iniciar la selección de carpeta después de 100 ms
 
 # Etiqueta para mostrar la fecha encima de los botones
 label_fecha = tk.Label(root, text=fecha_actual, font=("Arial", 10, "bold"))  # Fuente de 15px
