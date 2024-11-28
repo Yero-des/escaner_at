@@ -41,7 +41,7 @@ root.resizable(False, False)
 centrar_ventana(root, 400, 350)
 
 # Función para seleccionar la carpeta destino al iniciar la app
-def seleccionar_carpeta_destino(tk):
+def seleccionar_carpeta_destino(tk, actualizar_reloj):
 
     global carpeta_destino
     global carpeta_actual
@@ -50,12 +50,27 @@ def seleccionar_carpeta_destino(tk):
     subcarpetas = str.split(carpeta_destino,"/")
     carpeta_actual = subcarpetas[-1]
 
-    label_carpeta = tk.Label(root, text=carpeta_actual, font=("Arial", 12), fg=('red'))  # Fuente de 10px
-    label_carpeta.pack(pady=5)
-
     if not carpeta_destino:
         messagebox.showerror("Error", "Debes seleccionar una carpeta de destino.")
         root.destroy()  # Cerrar la aplicación si no se selecciona ninguna carpeta
+    else:
+        # Carpeta actual
+        label_carpeta = tk.Label(root, text=carpeta_actual, font=("Arial", 12), fg=('red'))  # Fuente de 10px
+        label_carpeta.pack(pady=5)
+
+        # Frame para organizar los botones
+        frame_botones = tk.Frame(root)
+        frame_botones.pack(pady=15)
+
+        # Botones
+        btn_escanear = tk.Button(frame_botones, text="Escaneo general", command=manejar_escaneo)  # Cambia la función según lo necesites
+        btn_escanear.pack(side="left", padx=10)  # Botón a la izquierda
+
+        btn_jackpot = tk.Button(frame_botones, text="Escaneo especial", command=manejar_escaneo_especial)  # Cambia la función según lo necesites
+        btn_jackpot.pack(side="left", padx=10)  # Botón a la derecha
+
+        # Iniciar actualización del reloj
+        actualizar_reloj()
 
 # Función para manejar el escaneo y saltar archivos
 def manejar_escaneo():

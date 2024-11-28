@@ -2,7 +2,7 @@ import os
 import win32com.client
 from tkinter import messagebox
 
-def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_especial = ""):
+def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_especial = "", dpi = 75):
     try:
         # Crear un diálogo WIA
         wia_dialog = win32com.client.Dispatch("WIA.CommonDialog")
@@ -14,14 +14,15 @@ def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_e
         
         # Conectar al primer dispositivo disponible
         device = device_manager.DeviceInfos.Item(1).Connect()
-        
+
         # Configurar propiedades del escáner (DPI horizontal y vertical)
         try:
-            item = device.Items[1]
-            item.Properties["6146"].Value = 75  # DPI horizontal
-            item.Properties["6147"].Value = 75  # DPI vertical
+            # Configurar DPI si es posible
+            item = device.Items[1]      
+            item.Properties["6147"].Value = dpi  # DPI horizontal
+            item.Properties["6148"].Value = dpi  # DPI vertical
         except Exception as ex:
-            print("No se pudieron configurar las propiedades del escáner:", ex)
+            print("Advertencia: No se pudieron configurar algunas propiedades:", ex)
         
         # Realizar el escaneo utilizando el método ShowAcquireImage
         image = wia_dialog.ShowAcquireImage()  # Inicia el escaneo con las configuraciones aplicadas
@@ -29,16 +30,19 @@ def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_e
             raise Exception("El escaneo fue cancelado o fallido.")
         
         destino = ""
+        nombre_final = ""
 
         # Guardar la imagen escaneada en la carpeta destino
         if nombre_especial != "":
             destino = os.path.join(carpeta_destino, f"({nombre_especial}) {nombre_archivo} {carpeta_actual}.png")
+            nombre_final = f"({nombre_especial}) {nombre_archivo} {carpeta_actual}.png"
         else:
             destino = os.path.join(carpeta_destino, f"{nombre_archivo} {carpeta_actual}.png")
+            nombre_final = f"{nombre_archivo} {carpeta_actual}.png"
 
         image.SaveFile(destino)
         
-        messagebox.showinfo("Escaneo Exitoso", f"Archivo guardado como: {destino}")
+        messagebox.showinfo("Escaneo Exitoso", f"Archivo guardado como: {nombre_final}")
     
     except Exception as e:
         messagebox.showerror("Error al Escanear", f"No se pudo escanear: {e}")
