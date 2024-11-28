@@ -5,13 +5,13 @@ from datetime import datetime
 
 # Obtener fecha y hora actual
 fecha_actual = datetime.now()
-fecha_actual = datetime.strftime(fecha_actual,'%D %H:%M')
+fecha_actual = datetime.strftime(fecha_actual,'%d/%m/%Y %H:%M')
 
 # Función para actualizar la fecha y hora
 def actualizar_reloj():
 
   fecha_actual = datetime.now()
-  fecha_formateada = datetime.strftime(fecha_actual, '%D %H:%M')
+  fecha_formateada = datetime.strftime(fecha_actual, '%d/%m/%Y %H:%M')
   label_fecha.config(text=fecha_formateada)
   root.after(1000, actualizar_reloj)  # Llama a esta función nuevamente en 1 segundo
 
