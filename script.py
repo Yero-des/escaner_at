@@ -4,6 +4,7 @@ from wia import escanear_documento
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter import ttk
+from datetime import datetime
 
 
 def resource_path(relative_path):
@@ -40,6 +41,17 @@ root.iconbitmap(icon_path)
 root.resizable(False, False)
 centrar_ventana(root, 400, 350)
 
+def comparacion_carpeta_fecha():
+    global carpeta_actual
+
+    fecha_actual = datetime.now()
+    fecha_actual = datetime.strftime(fecha_actual,'%d/%m/%Y %H:%M')
+
+    dia_carpeta = carpeta_actual[-8:-6] # Extrae el dia de la carpeta
+    dia_fecha = fecha_actual[0:2]
+
+    return dia_carpeta == dia_fecha
+
 # Función para seleccionar la carpeta destino al iniciar la app
 def seleccionar_carpeta_destino(tk, actualizar_reloj):
 
@@ -54,9 +66,18 @@ def seleccionar_carpeta_destino(tk, actualizar_reloj):
         messagebox.showerror("Error", "Debes seleccionar una carpeta de destino.")
         root.destroy()  # Cerrar la aplicación si no se selecciona ninguna carpeta
     else:
+
+        es_igual_fecha = comparacion_carpeta_fecha()
+        carpeta_hab = "red" if es_igual_fecha else "gray"
+
         # Carpeta actual
-        label_carpeta = tk.Label(root, text=carpeta_actual, font=("Arial", 12), fg=('red'))  # Fuente de 10px
+        label_carpeta = tk.Label(root, text=carpeta_actual, font=("Arial", 12), fg=(carpeta_hab))  # Fuente de 10px
         label_carpeta.pack(pady=5)
+
+        if not es_igual_fecha:
+            centrar_ventana(root, 400, 380)
+            label_carpeta = tk.Label(root, text="La fecha no es la misma", font=("Arial", 8, "italic"), fg=("gray"))  # Fuente de 10px
+            label_carpeta.pack(pady=2)
 
         # Frame para organizar los botones
         frame_botones = tk.Frame(root)

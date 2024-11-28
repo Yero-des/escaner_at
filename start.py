@@ -16,7 +16,6 @@ def actualizar_reloj():
   label_fecha.config(text=fecha_formateada)
   root.after(1000, actualizar_reloj)  # Llama a esta función nuevamente en 1 segundo
 
-
 # Cargar imagen
 imagen_original = Image.open(img_path)  # Reemplaza con la ruta de tu imagen
 imagen_redimensionada = imagen_original.resize((400, 200))  # Ajustar tamaño
