@@ -18,7 +18,7 @@ icon_path = resource_path("img/apuesta_total.ico")
 img_path = resource_path("img/logo_apuesta_total.png")
 
 # Modificar a mas nombres
-nombres_principal = ["ATERAX", "BETSHOP", "JV", "LOTTINGO", "CABALLOS", "KASNET", "NIUBIZ", "REPORTE NIUBIZ"]
+nombres_principal = ["ATERAX", "BETSHOP", "JV", "LOTTINGO", "CABALLOS", "KASNET", "NIUBIZ", "REPORTE NIUBIZ", "VALE DE DESCUENTO"]
 nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "REGISTRO"]
 
 # Variable global para la carpeta destino
