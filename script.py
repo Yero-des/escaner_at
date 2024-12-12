@@ -19,7 +19,8 @@ img_path = resource_path("img/logo_apuesta_total.png")
 
 # Modificar a mas nombres
 nombres_principal = ["ATERAX", "BETSHOP", "JV", "LOTTINGO", "CABALLOS", "KASNET", "NIUBIZ", "REPORTE NIUBIZ", "VALE DE DESCUENTO"]
-nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "REGISTRO"]
+opciones_web = ["JACKPOT", "VALE DE NAVIDAD", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO"] 
+nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"]
 
 # Variable global para la carpeta destino
 carpeta_destino = ""
@@ -131,7 +132,7 @@ def manejar_escaneo_especial():
 
         # Crear ventana para opciones seleccionables
         def mostrar_opciones():
-            global centrar_ventana, icon_path
+            global centrar_ventana, icon_path, opciones_web
 
             # Crear una ventana emergente para elegir opciones
             ventana_opciones = tk.Toplevel(root)
@@ -146,7 +147,6 @@ def manejar_escaneo_especial():
             tk.Label(ventana_opciones, text="Selecciona un nombre para el registro:").pack(padx=10, pady=5)
 
             # Crear el combobox con opciones para el nombre
-            opciones_web = ["JACKPOT", "WEB RETAIL", "CUMPLEAÑERO", "BINGO"]  # Opciones para el nombre
             combobox_web = ttk.Combobox(ventana_opciones, values=opciones_web)
             combobox_web.pack(padx=10, pady=5)
 
