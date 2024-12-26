@@ -1,8 +1,9 @@
 import os
 import win32com.client
 from tkinter import messagebox
+from PIL import Image
 
-def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_especial = "", dpi = 75):
+def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_especial="", dpi=75):
     try:
         # Crear un diálogo WIA
         wia_dialog = win32com.client.Dispatch("WIA.CommonDialog")
@@ -17,8 +18,7 @@ def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_e
 
         # Configurar propiedades del escáner (DPI horizontal y vertical)
         try:
-            # Configurar DPI si es posible
-            item = device.Items[1]      
+            item = device.Items[1]
             item.Properties["6147"].Value = dpi  # DPI horizontal
             item.Properties["6148"].Value = dpi  # DPI vertical
         except Exception as ex:
@@ -29,21 +29,30 @@ def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_e
         if image is None:
             raise Exception("El escaneo fue cancelado o fallido.")
         
-        destino = ""
+        destino_temporal = os.path.join(carpeta_destino, "temporal_scan.png")
+
+        # Guardar la imagen escaneada como PNG temporalmente
+        image.SaveFile(destino_temporal)
+
+        # Convertir la imagen PNG a JPG
+        destino_final = ""
         nombre_final = ""
 
-        # Guardar la imagen escaneada en la carpeta destino
         if nombre_especial != "":
-            destino = os.path.join(carpeta_destino, f"({nombre_especial}) {nombre_archivo} {carpeta_actual}.png")
-            nombre_final = f"({nombre_especial}) {nombre_archivo} {carpeta_actual}.png"
+            nombre_final = f"({nombre_especial}) {nombre_archivo} {carpeta_actual}.jpg"
         else:
-            destino = os.path.join(carpeta_destino, f"{nombre_archivo} {carpeta_actual}.png")
-            nombre_final = f"{nombre_archivo} {carpeta_actual}.png"
+            nombre_final = f"{nombre_archivo} {carpeta_actual}.jpg"
 
-        image.SaveFile(destino)
-        
+        destino_final = os.path.join(carpeta_destino, nombre_final)
+
+        with Image.open(destino_temporal) as img:
+            img = img.convert("RGB")  # Convertir a RGB si es necesario
+            img.save(destino_final, "JPEG")
+
+        # Eliminar el archivo temporal
+        os.remove(destino_temporal)
+
         messagebox.showinfo("Escaneo Exitoso", f"Archivo guardado como: {nombre_final}")
-    
+
     except Exception as e:
         messagebox.showerror("Error al Escanear", f"No se pudo escanear: {e}")
-
