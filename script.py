@@ -89,10 +89,20 @@ def seleccionar_carpeta_destino(tk, actualizar_reloj):
         btn_escanear.pack(side="left", padx=10)  # Botón a la izquierda
 
         btn_jackpot = tk.Button(frame_botones, text="Escaneo especial", command=manejar_escaneo_especial)  # Cambia la función según lo necesites
-        btn_jackpot.pack(side="left", padx=10)  # Botón a la derecha
+        btn_jackpot.pack(side="left", padx=10)  # Botón al medio
+
+        btn_carpeta = tk.Button(frame_botones, text="Carpeta", command=ver_carpeta) # Ver carpeta actual en explorador
+        btn_carpeta.pack(side="right", padx=10) # Boton a la derecha
 
         # Iniciar actualización del reloj
         actualizar_reloj()
+
+def ver_carpeta():
+
+    global carpeta_destino
+
+    os.startfile(carpeta_destino)
+    return
 
 # Función para manejar el escaneo y saltar archivos
 def manejar_escaneo():

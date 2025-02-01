@@ -1,304 +1,304 @@
-('C:\\Users\\APUESTA TOTAL\\Documents\\py\\escaner_at-main\\build\\ESCANER '
- 'AT\\PYZ-00.pyz',
+('C:\\Users\\APUESTA '
+ 'TOTAL\\Documents\\2024\\py\\escaner_at-main\\build\\ESCANER AT\\PYZ-00.pyz',
  [('PIL',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\__init__.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\__init__.py',
    'PYMODULE'),
   ('PIL.BlpImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\BlpImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\BlpImagePlugin.py',
    'PYMODULE'),
   ('PIL.BmpImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\BmpImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\BmpImagePlugin.py',
    'PYMODULE'),
   ('PIL.BufrStubImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\BufrStubImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\BufrStubImagePlugin.py',
    'PYMODULE'),
   ('PIL.CurImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\CurImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\CurImagePlugin.py',
    'PYMODULE'),
   ('PIL.DcxImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\DcxImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\DcxImagePlugin.py',
    'PYMODULE'),
   ('PIL.DdsImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\DdsImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\DdsImagePlugin.py',
    'PYMODULE'),
   ('PIL.EpsImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\EpsImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\EpsImagePlugin.py',
    'PYMODULE'),
   ('PIL.ExifTags',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ExifTags.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ExifTags.py',
    'PYMODULE'),
   ('PIL.FitsImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\FitsImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\FitsImagePlugin.py',
    'PYMODULE'),
   ('PIL.FliImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\FliImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\FliImagePlugin.py',
    'PYMODULE'),
   ('PIL.FpxImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\FpxImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\FpxImagePlugin.py',
    'PYMODULE'),
   ('PIL.FtexImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\FtexImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\FtexImagePlugin.py',
    'PYMODULE'),
   ('PIL.GbrImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\GbrImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\GbrImagePlugin.py',
    'PYMODULE'),
   ('PIL.GifImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\GifImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\GifImagePlugin.py',
    'PYMODULE'),
   ('PIL.GimpGradientFile',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\GimpGradientFile.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\GimpGradientFile.py',
    'PYMODULE'),
   ('PIL.GimpPaletteFile',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\GimpPaletteFile.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\GimpPaletteFile.py',
    'PYMODULE'),
   ('PIL.GribStubImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\GribStubImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\GribStubImagePlugin.py',
    'PYMODULE'),
   ('PIL.Hdf5StubImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
    'PYMODULE'),
   ('PIL.IcnsImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\IcnsImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\IcnsImagePlugin.py',
    'PYMODULE'),
   ('PIL.IcoImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\IcoImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\IcoImagePlugin.py',
    'PYMODULE'),
   ('PIL.ImImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImImagePlugin.py',
    'PYMODULE'),
   ('PIL.Image',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\Image.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\Image.py',
    'PYMODULE'),
   ('PIL.ImageChops',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageChops.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageChops.py',
    'PYMODULE'),
   ('PIL.ImageCms',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageCms.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageCms.py',
    'PYMODULE'),
   ('PIL.ImageColor',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageColor.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageColor.py',
    'PYMODULE'),
   ('PIL.ImageFile',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageFile.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageFile.py',
    'PYMODULE'),
   ('PIL.ImageFilter',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageFilter.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageFilter.py',
    'PYMODULE'),
   ('PIL.ImageMath',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageMath.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageMath.py',
    'PYMODULE'),
   ('PIL.ImageMode',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageMode.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageMode.py',
    'PYMODULE'),
   ('PIL.ImageOps',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageOps.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageOps.py',
    'PYMODULE'),
   ('PIL.ImagePalette',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImagePalette.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImagePalette.py',
    'PYMODULE'),
   ('PIL.ImageQt',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageQt.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageQt.py',
    'PYMODULE'),
   ('PIL.ImageSequence',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageSequence.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageSequence.py',
    'PYMODULE'),
   ('PIL.ImageShow',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageShow.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageShow.py',
    'PYMODULE'),
   ('PIL.ImageTk',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageTk.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageTk.py',
    'PYMODULE'),
   ('PIL.ImageWin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageWin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImageWin.py',
    'PYMODULE'),
   ('PIL.ImtImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImtImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\ImtImagePlugin.py',
    'PYMODULE'),
   ('PIL.IptcImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\IptcImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\IptcImagePlugin.py',
    'PYMODULE'),
   ('PIL.Jpeg2KImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
    'PYMODULE'),
   ('PIL.JpegImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\JpegImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\JpegImagePlugin.py',
    'PYMODULE'),
   ('PIL.JpegPresets',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\JpegPresets.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\JpegPresets.py',
    'PYMODULE'),
   ('PIL.McIdasImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\McIdasImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\McIdasImagePlugin.py',
    'PYMODULE'),
   ('PIL.MicImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\MicImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\MicImagePlugin.py',
    'PYMODULE'),
   ('PIL.MpegImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\MpegImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\MpegImagePlugin.py',
    'PYMODULE'),
   ('PIL.MpoImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\MpoImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\MpoImagePlugin.py',
    'PYMODULE'),
   ('PIL.MspImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\MspImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\MspImagePlugin.py',
    'PYMODULE'),
   ('PIL.PaletteFile',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PaletteFile.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PaletteFile.py',
    'PYMODULE'),
   ('PIL.PalmImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PalmImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PalmImagePlugin.py',
    'PYMODULE'),
   ('PIL.PcdImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PcdImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PcdImagePlugin.py',
    'PYMODULE'),
   ('PIL.PcxImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PcxImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PcxImagePlugin.py',
    'PYMODULE'),
   ('PIL.PdfImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PdfImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PdfImagePlugin.py',
    'PYMODULE'),
   ('PIL.PdfParser',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PdfParser.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PdfParser.py',
    'PYMODULE'),
   ('PIL.PixarImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PixarImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PixarImagePlugin.py',
    'PYMODULE'),
   ('PIL.PngImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PngImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PngImagePlugin.py',
    'PYMODULE'),
   ('PIL.PpmImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PpmImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PpmImagePlugin.py',
    'PYMODULE'),
   ('PIL.PsdImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PsdImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\PsdImagePlugin.py',
    'PYMODULE'),
   ('PIL.QoiImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\QoiImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\QoiImagePlugin.py',
    'PYMODULE'),
   ('PIL.SgiImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\SgiImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\SgiImagePlugin.py',
    'PYMODULE'),
   ('PIL.SpiderImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\SpiderImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\SpiderImagePlugin.py',
    'PYMODULE'),
   ('PIL.SunImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\SunImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\SunImagePlugin.py',
    'PYMODULE'),
   ('PIL.TgaImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\TgaImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\TgaImagePlugin.py',
    'PYMODULE'),
   ('PIL.TiffImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\TiffImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\TiffImagePlugin.py',
    'PYMODULE'),
   ('PIL.TiffTags',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\TiffTags.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\TiffTags.py',
    'PYMODULE'),
   ('PIL.WebPImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\WebPImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\WebPImagePlugin.py',
    'PYMODULE'),
   ('PIL.WmfImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\WmfImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\WmfImagePlugin.py',
    'PYMODULE'),
   ('PIL.XVThumbImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
    'PYMODULE'),
   ('PIL.XbmImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\XbmImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\XbmImagePlugin.py',
    'PYMODULE'),
   ('PIL.XpmImagePlugin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\XpmImagePlugin.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\XpmImagePlugin.py',
    'PYMODULE'),
   ('PIL._binary',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\_binary.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\_binary.py',
    'PYMODULE'),
   ('PIL._deprecate',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\_deprecate.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\_deprecate.py',
    'PYMODULE'),
   ('PIL._typing',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\_typing.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\_typing.py',
    'PYMODULE'),
   ('PIL._util',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\_util.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\_util.py',
    'PYMODULE'),
   ('PIL._version',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\_version.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\_version.py',
    'PYMODULE'),
   ('PIL.features',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\features.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\PIL\\features.py',
    'PYMODULE'),
   ('__future__',
    'C:\\Program '
@@ -362,7 +362,7 @@
    'PYMODULE'),
   ('commctrl',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32\\lib\\commctrl.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32\\lib\\commctrl.py',
    'PYMODULE'),
   ('contextlib',
    'C:\\Program '
@@ -666,48 +666,48 @@
    'PYMODULE'),
   ('pythoncom',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\pythoncom.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\pythoncom.py',
    'PYMODULE'),
   ('pywin',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\__init__.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\__init__.py',
    'PYMODULE'),
   ('pywin.dialogs',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\dialogs\\__init__.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\dialogs\\__init__.py',
    'PYMODULE'),
   ('pywin.dialogs.list',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\dialogs\\list.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\dialogs\\list.py',
    'PYMODULE'),
   ('pywin.dialogs.status',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\dialogs\\status.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\dialogs\\status.py',
    'PYMODULE'),
   ('pywin.mfc',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\mfc\\__init__.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\mfc\\__init__.py',
    'PYMODULE'),
   ('pywin.mfc.dialog',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\mfc\\dialog.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\mfc\\dialog.py',
    'PYMODULE'),
   ('pywin.mfc.object',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\mfc\\object.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\mfc\\object.py',
    'PYMODULE'),
   ('pywin.mfc.thread',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\mfc\\thread.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\mfc\\thread.py',
    'PYMODULE'),
   ('pywin.mfc.window',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\mfc\\window.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\Pythonwin\\pywin\\mfc\\window.py',
    'PYMODULE'),
   ('pywin32_system32', '-', 'PYMODULE'),
   ('pywintypes',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32\\lib\\pywintypes.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32\\lib\\pywintypes.py',
    'PYMODULE'),
   ('quopri',
    'C:\\Program '
@@ -718,7 +718,7 @@
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2288.0_x64__qbz5n2kfra8p0\\Lib\\random.py',
    'PYMODULE'),
   ('script',
-   'C:\\Users\\APUESTA TOTAL\\Documents\\py\\escaner_at-main\\script.py',
+   'C:\\Users\\APUESTA TOTAL\\Documents\\2024\\py\\escaner_at-main\\script.py',
    'PYMODULE'),
   ('selectors',
    'C:\\Program '
@@ -826,7 +826,7 @@
    'PYMODULE'),
   ('typing_extensions',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\setuptools\\_vendor\\typing_extensions.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\setuptools\\_vendor\\typing_extensions.py',
    'PYMODULE'),
   ('urllib',
    'C:\\Program '
@@ -849,87 +849,87 @@
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2288.0_x64__qbz5n2kfra8p0\\Lib\\urllib\\response.py',
    'PYMODULE'),
   ('wia',
-   'C:\\Users\\APUESTA TOTAL\\Documents\\py\\escaner_at-main\\wia.py',
+   'C:\\Users\\APUESTA TOTAL\\Documents\\2024\\py\\escaner_at-main\\wia.py',
    'PYMODULE'),
   ('win32com',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\__init__.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\__init__.py',
    'PYMODULE'),
   ('win32com.client',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\__init__.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\__init__.py',
    'PYMODULE'),
   ('win32com.client.CLSIDToClass',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\CLSIDToClass.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\CLSIDToClass.py',
    'PYMODULE'),
   ('win32com.client.build',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\build.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\build.py',
    'PYMODULE'),
   ('win32com.client.dynamic',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\dynamic.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\dynamic.py',
    'PYMODULE'),
   ('win32com.client.gencache',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\gencache.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\gencache.py',
    'PYMODULE'),
   ('win32com.client.genpy',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\genpy.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\genpy.py',
    'PYMODULE'),
   ('win32com.client.makepy',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\makepy.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\makepy.py',
    'PYMODULE'),
   ('win32com.client.selecttlb',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\selecttlb.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\selecttlb.py',
    'PYMODULE'),
   ('win32com.client.util',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\util.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\client\\util.py',
    'PYMODULE'),
   ('win32com.server',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\server\\__init__.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\server\\__init__.py',
    'PYMODULE'),
   ('win32com.server.dispatcher',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\server\\dispatcher.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\server\\dispatcher.py',
    'PYMODULE'),
   ('win32com.server.exception',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\server\\exception.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\server\\exception.py',
    'PYMODULE'),
   ('win32com.server.policy',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\server\\policy.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\server\\policy.py',
    'PYMODULE'),
   ('win32com.server.util',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\server\\util.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\server\\util.py',
    'PYMODULE'),
   ('win32com.universal',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\universal.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\universal.py',
    'PYMODULE'),
   ('win32com.util',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\util.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32com\\util.py',
    'PYMODULE'),
   ('win32con',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32\\lib\\win32con.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32\\lib\\win32con.py',
    'PYMODULE'),
   ('win32traceutil',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32\\lib\\win32traceutil.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32\\lib\\win32traceutil.py',
    'PYMODULE'),
   ('winerror',
    'C:\\Users\\APUESTA '
-   'TOTAL\\Documents\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32\\lib\\winerror.py',
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\myvenv\\Lib\\site-packages\\win32\\lib\\winerror.py',
    'PYMODULE'),
   ('xml',
    'C:\\Program '
