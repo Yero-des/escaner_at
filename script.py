@@ -18,8 +18,8 @@ icon_path = resource_path("img/apuesta_total.ico")
 img_path = resource_path("img/logo_apuesta_total.png")
 
 # Modificar a mas nombres
-nombres_principal = ["ATERAX", "BETSHOP", "JV", "LOTTINGO", "CABALLOS", "KASNET", "NIUBIZ", "REPORTE NIUBIZ", "VALE DE DESCUENTO"]
-opciones_web = ["JACKPOT", "VALE DE NAVIDAD", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO"] 
+nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "BETSHOP", "JV", "VALE DE DESCUENTO"]
+opciones_web = ["JACKPOT", "VALE DE REGISTRO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"] 
 nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"]
 
 # Variable global para la carpeta destino
@@ -108,15 +108,20 @@ def manejar_escaneo():
     nombre_actual = nombres_principal[index]
     
     # Preguntar al usuario si desea escanear o saltar
-    respuesta = messagebox.askyesno("Escaneo de Documento", f"¿Deseas escanear {nombre_actual}?\n(Sí para escanear, No para saltar)")
-    
+    respuesta = messagebox.askyesnocancel("Escaneo de Documento", f"¿Deseas escanear {nombre_actual}?\n(Sí para escanear, No para saltar)")
+
     if respuesta:
       escanear_documento(nombre_actual, carpeta_destino, carpeta_actual)
+    
+    if respuesta == None:
+        messagebox.showinfo("Cancelado", "El proceso ha sido cancelado.")
+        index = 0
+        return
     
     # Avanzar al siguiente nombre
     index += 1
     manejar_escaneo()
-
+    
 # Funcion para manejar el escaneo y saltar archivos de jackpot 
 def manejar_escaneo_especial():
     global index, carpeta_actual, valor_especial
@@ -193,10 +198,15 @@ def continuar_escaneo():
     nombre_actual = nombres_especial[index]
 
     # Preguntar al usuario si desea escanear o saltar
-    respuesta = messagebox.askyesno(f"Escaneo de Documento ({valor_especial})", f"¿Deseas escanear {nombre_actual}?\n(Sí para escanear, No para saltar)")
+    respuesta = messagebox.askyesnocancel(f"Escaneo de Documento ({valor_especial})", f"¿Deseas escanear {nombre_actual}?\n(Sí para escanear, No para saltar)")
 
     if respuesta:
         escanear_documento(nombre_actual, carpeta_destino, carpeta_actual, valor_especial)
+    
+    if respuesta == None:
+        messagebox.showinfo("Cancelado", "El proceso ha sido cancelado.")
+        index = 0
+        return
 
     # Avanzar al siguiente nombre
     index += 1
