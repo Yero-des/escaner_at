@@ -5,6 +5,12 @@ from PIL import Image
 
 def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_especial="", dpi=75):
     try:
+        
+        # Crear la carpeta /PROMOCIONES EN CASO NO EXISTA
+        if not os.path.exists(carpeta_destino):
+            # Si no existe, la crea
+            os.makedirs(carpeta_destino)
+
         # Crear un diálogo WIA
         wia_dialog = win32com.client.Dispatch("WIA.CommonDialog")
         

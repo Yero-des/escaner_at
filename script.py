@@ -97,9 +97,35 @@ def seleccionar_carpeta_destino(tk, actualizar_reloj):
         # Iniciar actualización del reloj
         actualizar_reloj()
 
+# Función para actualizar el directorio de la carpeta segun el escaneo sea especial o no
+def actualizar_carpeta_destino(es_metodo_especial):
+    global carpeta_destino, carpeta_actual
+
+    carpeta_especial = "PROMOCIONES " + carpeta_actual
+    carpeta_especial_path = os.path.join(carpeta_destino, carpeta_especial)
+
+    # Corroborar si la carpeta ha sido modificada
+    es_carpeta_modificada = carpeta_destino.endswith(carpeta_especial)
+
+    # print(es_carpeta_modificada, es_metodo_especial)
+
+    if es_carpeta_modificada and es_metodo_especial:
+        pass  # No hacemos nada, ya es especial
+    elif es_carpeta_modificada and not es_metodo_especial:
+        # Quitar la última carpeta y dejar la ruta original
+        carpeta_destino = os.path.dirname(carpeta_destino)
+    elif not es_carpeta_modificada and es_metodo_especial:
+        # Cambiar a ruta especial
+        carpeta_destino = carpeta_especial_path
+
+    # print(f"Carpeta Destino: {carpeta_destino}")
+
+# Función para abrir la carpeta actual en el explorador de archivos
 def ver_carpeta():
 
     global carpeta_destino
+
+    actualizar_carpeta_destino(False)
 
     os.startfile(carpeta_destino)
     return
@@ -114,6 +140,8 @@ def manejar_escaneo():
         messagebox.showinfo("Completado", "Todos los documentos han sido procesados.")
         index = 0
         return
+    
+    actualizar_carpeta_destino(False)
 
     nombre_actual = nombres_principal[index]
     
@@ -204,11 +232,13 @@ def manejar_escaneo_especial():
         continuar_escaneo()
 
 def continuar_escaneo():
-    global index, valor_especial
+    global index, valor_especial, carpeta_destino, primera_promo
     nombre_actual = nombres_especial[index]
 
     # Preguntar al usuario si desea escanear o saltar
     respuesta = messagebox.askyesnocancel(f"Escaneo de Documento ({valor_especial})", f"¿Deseas escanear {nombre_actual}?\n(Sí para escanear, No para saltar)")
+
+    actualizar_carpeta_destino(True)
 
     if respuesta:
         escanear_documento(nombre_actual, carpeta_destino, carpeta_actual, valor_especial)
