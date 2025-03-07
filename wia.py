@@ -1,7 +1,8 @@
 import os
 import win32com.client
-from tkinter import messagebox
-from PIL import Image
+from tkinter import messagebox, Toplevel, Label, Button
+from PIL import Image, ImageTk
+from resources import centrar_ventana, icon_path
 
 def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_especial="", dpi=75):
     try:
@@ -58,7 +59,43 @@ def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_e
         # Eliminar el archivo temporal
         os.remove(destino_temporal)
 
-        messagebox.showinfo("Escaneo Exitoso", f"Archivo guardado como: {nombre_final}")
+        # Mostrar ventana emergente con la imagen escaneada
+        mostrar_resultado(destino_final, nombre_final)
+        # messagebox.showinfo("Escaneo Exitoso", f"Archivo guardado como: {nombre_final}")
+
 
     except Exception as e:
         messagebox.showerror("Error al Escanear", f"No se pudo escanear: {e}")
+
+def mostrar_resultado(ruta_imagen, nombre_archivo):
+
+    ventana = Toplevel()
+    ventana.title("Escaneo Exitoso")
+    ventana.resizable(False, False)  # Evita que se redimensione
+    ventana.iconbitmap(icon_path)
+    ventana.grab_set()  # Hace la ventana modal (bloquea interacción con otras ventanas)
+    ventana.focus_force()
+    centrar_ventana(ventana, 300, 390)
+
+    # Cargar la imagen
+    img = Image.open(ruta_imagen)
+    img.thumbnail((250, 250))  # Redimensionar la imagen
+    img_tk = ImageTk.PhotoImage(img)
+
+    # Etiqueta con la imagen
+    label_imagen = Label(ventana, image=img_tk)
+    label_imagen.image = img_tk
+    label_imagen.pack(pady=10)
+
+    nombres_archivos = nombre_archivo.split(" - ")
+
+    # Etiqueta con el mensaje
+    label_texto = Label(ventana, text=f"Archivo guardado como:\n{nombres_archivos[0]} -\n{nombres_archivos[1]}", font=("Arial", 10))
+    label_texto.pack()
+
+    # Botón Aceptar
+    btn_aceptar = Button(ventana, text="Aceptar", font=("Arial", 10), command=ventana.destroy)
+    btn_aceptar.pack(pady=10)
+    btn_aceptar.config(default="active")
+
+    ventana.wait_window()

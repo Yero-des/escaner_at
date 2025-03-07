@@ -2,6 +2,7 @@ import tkinter as tk
 from script import *
 from PIL import Image, ImageTk
 from datetime import datetime
+from resources import img_path
 
 # Obtener fecha y hora actual
 fecha_actual = datetime.now()

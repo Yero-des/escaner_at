@@ -1,25 +1,14 @@
-import sys
 import os
 from wia import escanear_documento
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter import ttk
 from datetime import datetime
-
-
-def resource_path(relative_path):
-    """Encuentra el recurso empaquetado o en el directorio de desarrollo."""
-    if hasattr(sys, '_MEIPASS'):
-        return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath("."), relative_path)
-
-# Carga el icono usando la ruta adaptada
-icon_path = resource_path("img/apuesta_total.ico")
-img_path = resource_path("img/logo_apuesta_total.png")
+from resources import centrar_ventana, icon_path
 
 # Modificar a mas nombres
 nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "BETSHOP", "JV", "VALE DE DESCUENTO"]
-opciones_web = ["JACKPOT", "VALE DE REGISTRO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"] 
+opciones_web = ["JACKPOT", "VALE DE REGISTRO", "LUNES REGALON", "VIERNES DONATELO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"] 
 nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"]
 
 # Variable global para la carpeta destino
@@ -27,13 +16,6 @@ carpeta_destino = ""
 carpeta_actual = ""
 valor_especial = "JACKPOT 1"
 index = 0  # Índice para seguir la lista de nombres
-
-def centrar_ventana(ventana, ancho, alto):
-    screen_width = ventana.winfo_screenwidth()
-    screen_height = ventana.winfo_screenheight()
-    x = (screen_width - ancho) // 2
-    y = (screen_height - alto) // 2
-    ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
 
 # Crear ventana principal
 root = tk.Tk()
@@ -182,6 +164,7 @@ def manejar_escaneo_especial():
             ventana_opciones.title("Seleccionar información")
             ventana_opciones.iconbitmap(icon_path)
             ventana_opciones.resizable(False, False)
+            ventana_opciones.focus_force()
             centrar_ventana(ventana_opciones, 300, 200)
 
             ventana_opciones.grab_set()
