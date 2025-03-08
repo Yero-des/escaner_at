@@ -717,6 +717,10 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\\Lib\\random.py',
    'PYMODULE'),
+  ('resources',
+   'C:\\Users\\APUESTA '
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\resources.py',
+   'PYMODULE'),
   ('script',
    'C:\\Users\\APUESTA TOTAL\\Documents\\2024\\py\\escaner_at-main\\script.py',
    'PYMODULE'),

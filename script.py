@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter import ttk
 from datetime import datetime
-from resources import centrar_ventana, icon_path
+from resources import centrar_ventana, centrar_ventana_hija, icon_path
 
 # Modificar a mas nombres
 nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "BETSHOP", "JV", "VALE DE DESCUENTO"]
@@ -131,7 +131,7 @@ def manejar_escaneo():
     respuesta = messagebox.askyesnocancel("Escaneo de Documento", f"¿Deseas escanear {nombre_actual}?\n(Sí para escanear, No para saltar)")
 
     if respuesta:
-      escanear_documento(nombre_actual, carpeta_destino, carpeta_actual)
+      escanear_documento(root, nombre_actual, carpeta_destino, carpeta_actual)
     
     if respuesta == None:
         messagebox.showinfo("Cancelado", "El proceso ha sido cancelado.")
@@ -165,7 +165,7 @@ def manejar_escaneo_especial():
             ventana_opciones.iconbitmap(icon_path)
             ventana_opciones.resizable(False, False)
             ventana_opciones.focus_force()
-            centrar_ventana(ventana_opciones, 300, 200)
+            centrar_ventana_hija(ventana_opciones, 300, 200, root)
 
             ventana_opciones.grab_set()
 
@@ -257,7 +257,7 @@ def continuar_escaneo():
     actualizar_carpeta_destino(True)
 
     if respuesta:
-        escanear_documento(nombre_actual, carpeta_destino, carpeta_actual, valor_especial)
+        escanear_documento(root, nombre_actual, carpeta_destino, carpeta_actual, valor_especial)
     
     if respuesta == None:
         messagebox.showinfo("Cancelado", "El proceso ha sido cancelado.")

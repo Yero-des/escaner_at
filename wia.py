@@ -2,9 +2,9 @@ import os
 import win32com.client
 from tkinter import messagebox, Toplevel, Label, Button
 from PIL import Image, ImageTk
-from resources import centrar_ventana, icon_path
+from resources import centrar_ventana_hija, icon_path
 
-def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_especial="", dpi=75):
+def escanear_documento(root, nombre_archivo, carpeta_destino, carpeta_actual, nombre_especial="", dpi=75):
     try:
         
         # Crear la carpeta /PROMOCIONES EN CASO NO EXISTA
@@ -60,14 +60,14 @@ def escanear_documento(nombre_archivo, carpeta_destino, carpeta_actual, nombre_e
         os.remove(destino_temporal)
 
         # Mostrar ventana emergente con la imagen escaneada
-        mostrar_resultado(destino_final, nombre_final)
+        mostrar_resultado(destino_final, nombre_final, root)
         # messagebox.showinfo("Escaneo Exitoso", f"Archivo guardado como: {nombre_final}")
 
 
     except Exception as e:
         messagebox.showerror("Error al Escanear", f"No se pudo escanear: {e}")
 
-def mostrar_resultado(ruta_imagen, nombre_archivo):
+def mostrar_resultado(ruta_imagen, nombre_archivo, root):
 
     ventana = Toplevel()
     ventana.title("Escaneo Exitoso")
@@ -75,7 +75,7 @@ def mostrar_resultado(ruta_imagen, nombre_archivo):
     ventana.iconbitmap(icon_path)
     ventana.grab_set()  # Hace la ventana modal (bloquea interacción con otras ventanas)
     ventana.focus_force()
-    centrar_ventana(ventana, 300, 390)
+    centrar_ventana_hija(ventana, 300, 390, root)
 
     # Cargar la imagen
     img = Image.open(ruta_imagen)
