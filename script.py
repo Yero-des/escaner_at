@@ -13,6 +13,7 @@ nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"]
 
 # Variable global para la carpeta destino
 carpeta_destino = ""
+carpeta_destino_no_modificable = ""
 carpeta_actual = ""
 valor_especial = "JACKPOT 1"
 index = 0  # Índice para seguir la lista de nombres
@@ -38,10 +39,9 @@ def comparacion_carpeta_fecha():
 # Función para seleccionar la carpeta destino al iniciar la app
 def seleccionar_carpeta_destino(tk, actualizar_reloj):
 
-    global carpeta_destino
-    global carpeta_actual
+    global carpeta_destino, carpeta_destino_no_modificable, carpeta_actual
 
-    carpeta_destino = filedialog.askdirectory(title="Selecciona la carpeta destino")
+    carpeta_destino = carpeta_destino_no_modificable = filedialog.askdirectory(title="Selecciona la carpeta destino")
     subcarpetas = str.split(carpeta_destino,"/")
     carpeta_actual = subcarpetas[-1]
 
@@ -183,19 +183,52 @@ def manejar_escaneo_especial():
             tk.Label(ventana_opciones, text="Selecciona un número para el registro:").pack(padx=10, pady=5)
 
             # Crear el combobox con opciones para el número
-            opciones_numero = ["1", "2", "3", "4", "5"]  # Opciones para el número
+            opciones_numero = ["AUTO", "1", "2", "3", "4", "5"]  # Opciones para el número
             combobox_numero = ttk.Combobox(ventana_opciones, values=opciones_numero)
             combobox_numero.pack(padx=10, pady=5)
 
             # Establecer el valor por defecto
-            combobox_numero.set("1")
+            combobox_numero.set("AUTO")
 
             # Función para procesar la selección
             def procesar_seleccion():
-                global valor_especial
-                
+                global valor_especial, carpeta_destino_no_modificable, carpeta_actual
+
+                # Path completo de promociones segun carpeta actual
+                carpeta_especial = "PROMOCIONES " + carpeta_actual
+                carpeta_especial_path = os.path.join(carpeta_destino_no_modificable, carpeta_especial)
+
+                numero = 1 # Valor seleccionado por defecto para numero de escaneo
                 web = combobox_web.get()  # Obtener el valor seleccionado del combobox de nombre
-                numero = combobox_numero.get()  # Obtener el valor seleccionado del combobox de número
+                archivos_encontrados = []
+
+                # Asignar el numero mas reciente
+                if os.path.exists(carpeta_especial_path):
+
+                    archivos_encontrados = [
+                        archivo for archivo in os.listdir(carpeta_especial_path) 
+                        if os.path.isfile(os.path.join(carpeta_especial_path, archivo)) and archivo.startswith(f"({web}")
+                    ]
+
+                    if len(archivos_encontrados) != 0:
+
+                        # Ordenar segun numero
+                        archivos_encontrados.sort(reverse=True)
+
+                        # Tomar valor y numero actual
+                        elemento_actual = archivos_encontrados[0]
+                        index_tipo = len(f"({web} ")
+                        numero_actual = int(elemento_actual[index_tipo])
+
+                        print(elemento_actual)
+                        print(numero_actual)
+
+                        numero = numero_actual + 1
+
+                print("Archivos encontrados:", archivos_encontrados)
+
+                if combobox_numero.get() != "AUTO":
+                    numero = combobox_numero.get()
 
                 valor_especial = f"{web} {numero}"
                 ventana_opciones.destroy()  # Cerrar la ventana de opciones
@@ -203,7 +236,7 @@ def manejar_escaneo_especial():
                 continuar_escaneo()
 
             # Botón para confirmar la selección
-            btn_confirmar = tk.Button(ventana_opciones, text="Confirmar", command=procesar_seleccion)
+            btn_confirmar = tk.Button(ventana_opciones, text="Confirmar", command= lambda:procesar_seleccion())
             btn_confirmar.pack(pady=10)
 
             ventana_opciones.mainloop()
@@ -219,7 +252,7 @@ def continuar_escaneo():
     nombre_actual = nombres_especial[index]
 
     # Preguntar al usuario si desea escanear o saltar
-    respuesta = messagebox.askyesnocancel(f"Escaneo de Documento ({valor_especial})", f"¿Deseas escanear {nombre_actual}?\n(Sí para escanear, No para saltar)")
+    respuesta = messagebox.askyesnocancel(f"Escaneo ({valor_especial})", f"¿Deseas escanear {nombre_actual}?\n(Sí para escanear, No para saltar)")
 
     actualizar_carpeta_destino(True)
 

@@ -94,8 +94,9 @@ def mostrar_resultado(ruta_imagen, nombre_archivo):
     label_texto.pack()
 
     # Botón Aceptar
-    btn_aceptar = Button(ventana, text="Aceptar", font=("Arial", 10), command=ventana.destroy)
+    btn_aceptar = Button(ventana, text="Aceptar", font=("Arial", 9), command=ventana.destroy)
     btn_aceptar.pack(pady=10)
     btn_aceptar.config(default="active")
+    ventana.bind("<Return>", lambda event: ventana.destroy())
 
     ventana.wait_window()
