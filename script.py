@@ -9,7 +9,7 @@ from datetime import datetime
 from resources import centrar_ventana, centrar_ventana_hija, icon_path
 
 # Modificar a mas nombres
-nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "BETSHOP", "GOLDEN", "VALE DE DESCUENTO"]
+nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"]
 opciones_web = ["JACKPOT", "VALE DE REGISTRO", "LUNES REGALON", "VIERNES DONATELO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"] 
 nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"]
 
