@@ -10,8 +10,9 @@ from resources import centrar_ventana, centrar_ventana_hija, icon_path
 
 # Modificar a mas nombres
 nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"]
-opciones_web = ["JACKPOT", "VALE DE REGISTRO", "LUNES REGALON", "VIERNES DONATELO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"] 
-nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"]
+opciones_web = ["JACKPOT", "VALE DE REGISTRO", "LUNES REGALON", "VIERNES DONATELO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"]
+nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"] 
+nombres_especial_const = nombres_especial.copy()
 
 # Variable global para la carpeta destino
 carpeta_destino = ""
@@ -237,8 +238,14 @@ def manejar_escaneo_especial():
             combobox_numero.set("AUTO")
 
             # Función para procesar la selección
-            def procesar_seleccion():
-                global valor_especial, carpeta_destino_no_modificable, carpeta_actual
+            def procesar_seleccion(unico=False):
+                global valor_especial, carpeta_destino_no_modificable, carpeta_actual, nombres_especial
+
+                # Cambiar array de nombres segun tipo de escaneo
+                if unico:
+                    nombres_especial = ["JUGADA"]
+                else:
+                    nombres_especial = nombres_especial_const
 
                 # Path completo de promociones segun carpeta actual
                 carpeta_especial = "PROMOCIONES " + carpeta_actual
@@ -266,12 +273,10 @@ def manejar_escaneo_especial():
                         index_tipo = len(f"({web} ")
                         numero_actual = int(elemento_actual[index_tipo])
 
-                        print(elemento_actual)
-                        print(numero_actual)
+                        # print(elemento_actual)
+                        # print(numero_actual)
 
                         numero = numero_actual + 1
-
-                print("Archivos encontrados:", archivos_encontrados)
 
                 if combobox_numero.get() != "AUTO":
                     numero = combobox_numero.get()
@@ -281,9 +286,16 @@ def manejar_escaneo_especial():
 
                 continuar_escaneo()
 
-            # Botón para confirmar la selección
-            btn_confirmar = tk.Button(ventana_opciones, text="Confirmar", command= lambda:procesar_seleccion())
-            btn_confirmar.pack(pady=10)
+            frame_botones = tk.Frame(ventana_opciones)
+            frame_botones.pack(pady=15)
+
+            # Botón para escaneo multiple
+            btn_multiple = tk.Button(frame_botones, text="Multiple", command= lambda:procesar_seleccion())
+            btn_multiple.pack(side="left", pady=10, padx=10)
+
+            # Boton para escaneo unico
+            btn_unico = tk.Button(frame_botones, text="Unico", command= lambda:procesar_seleccion(True))
+            btn_unico.pack(side="right", pady=10, padx=10)
 
             ventana_opciones.mainloop()
 
