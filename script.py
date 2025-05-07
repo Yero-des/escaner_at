@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter import ttk
 from datetime import datetime
-from resources import centrar_ventana, centrar_ventana_hija, icon_path
+from resources import asignar_numero_mas_reciente, centrar_ventana, centrar_ventana_hija, icon_path
 
 # Modificar a mas nombres
 nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"]
@@ -26,7 +26,7 @@ root = tk.Tk()
 root.title(f"Escáner AT")
 root.iconbitmap(icon_path)
 root.resizable(False, False)
-centrar_ventana(root, 400, 350)
+centrar_ventana(root, 400, 400)
 
 def comparacion_carpeta_fecha():
     global carpeta_actual
@@ -113,15 +113,19 @@ def seleccionar_carpeta_destino(tk, actualizar_reloj):
         frame_botones = tk.Frame(root)
         frame_botones.pack(pady=15)
 
-        # Botones
-        btn_escanear = tk.Button(frame_botones, text="Escaneo general", command=manejar_escaneo)  # Cambia la función según lo necesites
-        btn_escanear.pack(side="left", padx=10)  # Botón a la izquierda
+        # Fila superior - 3 botones centrados
+        btn_escanear = tk.Button(frame_botones, text="Escaneo general", command=manejar_escaneo)
+        btn_escanear.grid(row=0, column=0, padx=10)
 
-        btn_jackpot = tk.Button(frame_botones, text="Escaneo especial", command=manejar_escaneo_especial)  # Cambia la función según lo necesites
-        btn_jackpot.pack(side="left", padx=10)  # Botón al medio
+        btn_jackpot = tk.Button(frame_botones, text="Escaneo especial", command=manejar_escaneo_especial)
+        btn_jackpot.grid(row=0, column=1, padx=10)
 
-        btn_carpeta = tk.Button(frame_botones, text="Carpeta", command=ver_carpeta) # Ver carpeta actual en explorador
-        btn_carpeta.pack(side="right", padx=10) # Boton a la derecha
+        btn_carpeta = tk.Button(frame_botones, text="Carpeta", command=ver_carpeta)
+        btn_carpeta.grid(row=0, column=2, padx=10)
+
+        # Botón inferior centrado
+        btn_simple = tk.Button(frame_botones, text="Escaneo simple", command=manejar_escaneo_simple)
+        btn_simple.grid(row=1, column=0, columnspan=3, pady=10)  # Ocupa las 3 columnas para quedar centrado
 
         # Iniciar actualización del reloj
         actualizar_reloj()
@@ -247,41 +251,13 @@ def manejar_escaneo_especial():
                 else:
                     nombres_especial = nombres_especial_const
 
-                # Path completo de promociones segun carpeta actual
-                carpeta_especial = "PROMOCIONES " + carpeta_actual
-                carpeta_especial_path = os.path.join(carpeta_destino_no_modificable, carpeta_especial)
+                valor_especial = asignar_numero_mas_reciente(
+                    ruta_origen=carpeta_destino_no_modificable,
+                    ruta_actual=carpeta_actual,
+                    web=combobox_web.get(),
+                    tipo=combobox_numero.get()
+                )
 
-                numero = 1 # Valor seleccionado por defecto para numero de escaneo
-                web = combobox_web.get()  # Obtener el valor seleccionado del combobox de nombre
-                archivos_encontrados = []
-
-                # Asignar el numero mas reciente
-                if os.path.exists(carpeta_especial_path):
-
-                    archivos_encontrados = [
-                        archivo for archivo in os.listdir(carpeta_especial_path) 
-                        if os.path.isfile(os.path.join(carpeta_especial_path, archivo)) and archivo.startswith(f"({web}")
-                    ]
-
-                    if len(archivos_encontrados) != 0:
-
-                        # Ordenar segun numero
-                        archivos_encontrados.sort(reverse=True)
-
-                        # Tomar valor y numero actual
-                        elemento_actual = archivos_encontrados[0]
-                        index_tipo = len(f"({web} ")
-                        numero_actual = int(elemento_actual[index_tipo])
-
-                        # print(elemento_actual)
-                        # print(numero_actual)
-
-                        numero = numero_actual + 1
-
-                if combobox_numero.get() != "AUTO":
-                    numero = combobox_numero.get()
-
-                valor_especial = f"{web} {numero}"
                 ventana_opciones.destroy()  # Cerrar la ventana de opciones
 
                 continuar_escaneo()
@@ -325,3 +301,39 @@ def continuar_escaneo():
     # Avanzar al siguiente nombre
     index += 1
     manejar_escaneo_especial()
+
+# Funcion para realizar un escaneo simple
+def manejar_escaneo_simple():
+    # Crear una ventana emergente para elegir opciones
+    ventana_opciones = tk.Toplevel(root)
+    ventana_opciones.title("Datos de escaneo")
+    ventana_opciones.iconbitmap(icon_path)
+    ventana_opciones.resizable(False, False)
+    ventana_opciones.focus_force()
+
+    centrar_ventana_hija(ventana_opciones, 300, 100, root)
+    actualizar_carpeta_destino(True)
+
+    ventana_opciones.grab_set()
+
+    # Mensaje de instrucciones
+    nombre_archivo_entry = tk.Entry(ventana_opciones)
+    nombre_archivo_entry.pack(padx=10, pady=15)
+    
+    def procesar_escaneo_simple():
+
+        nombre_archivo = nombre_archivo_entry.get().upper()
+        # print(nombre_archivo)
+
+        valor_especial = asignar_numero_mas_reciente(
+            ruta_origen=carpeta_destino_no_modificable,
+            ruta_actual=carpeta_actual,
+            web="ARCHIVO"
+        )   
+
+        escanear_documento(root, nombre_archivo, carpeta_destino, carpeta_actual, valor_especial)
+        ventana_opciones.destroy()
+
+    tk.Button(ventana_opciones, text="Escanear", command=procesar_escaneo_simple).pack(padx=10, pady=5)
+
+    ventana_opciones.mainloop()

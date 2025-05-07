@@ -7,7 +7,7 @@ from resources import centrar_ventana_hija, icon_path
 def escanear_documento(root, nombre_archivo, carpeta_destino, carpeta_actual, nombre_especial="", dpi=75):
     try:
         
-        # Crear la carpeta /PROMOCIONES EN CASO NO EXISTA
+        # Crear las carpetas faltantes EN CASO NO EXISTA
         if not os.path.exists(carpeta_destino):
             # Si no existe, la crea
             os.makedirs(carpeta_destino)

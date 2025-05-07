@@ -27,6 +27,58 @@ def centrar_ventana_hija(ventana, ancho, alto, padre):
     
     ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
 
+"""
+Funcion para asignar el numero mas reciente segun los archivos
+ya creados en la carpeta PROMOCIONES 
+ejm:
+(JACKPOT 1) ...
+(JACKPOT 2) ... 
+se creara el archivo
+(JACKPOT 3)
+automaticamente
+"""
+def asignar_numero_mas_reciente(ruta_origen, ruta_actual, web, tipo="AUTO"):
+
+    # Ruta completa de promociones segun carpeta actual
+    nombre_carpeta_promociones = "PROMOCIONES " + ruta_actual
+    ruta_base_carpeta_promociones = os.path.join(ruta_origen, nombre_carpeta_promociones)
+                                
+    numero = 1 # Numero por defecto
+    archivos_encontrados = [] # Lista de archivos encontrados
+
+    # Verificar si existe la ruta 
+    if os.path.exists(ruta_base_carpeta_promociones):
+
+        # Encontrar nombres de archivos que comiencen con el recurso correspondiente
+        archivos_encontrados = [
+            archivo for archivo in os.listdir(ruta_base_carpeta_promociones) 
+            if os.path.isfile(os.path.join(ruta_base_carpeta_promociones, archivo)) and archivo.startswith(f"({web}")
+        ]
+
+        # Se verifica si se ha encontrado algun archivo 
+        if len(archivos_encontrados) != 0:
+
+            # Ordenar segun numero
+            archivos_encontrados.sort(reverse=True)
+
+            # Tomar valor y numero actual
+            elemento_actual = archivos_encontrados[0]
+            index_tipo = len(f"({web} ")
+            numero_actual = int(elemento_actual[index_tipo])
+
+            # print(elemento_actual)
+            # print(numero_actual)
+
+            # Sumar el valor del nueor
+            numero = numero_actual + 1
+
+    # Asignar a un numero personalizado en caso el tipo no sea AUTO
+    if tipo != "AUTO":
+        numero = tipo
+
+    valor_especial = f"{web} {numero}" # Concatenacion de valores de recurso y numero
+    return valor_especial
+
 def resource_path(relative_path):
     """Encuentra el recurso empaquetado o en el directorio de desarrollo."""
     if hasattr(sys, '_MEIPASS'):
