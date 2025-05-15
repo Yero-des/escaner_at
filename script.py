@@ -320,7 +320,7 @@ def manejar_escaneo_simple():
     nombre_archivo_entry = tk.Entry(ventana_opciones)
     nombre_archivo_entry.pack(padx=10, pady=15)
     
-    def procesar_escaneo_simple():
+    def procesar_escaneo_simple(event=None):
 
         nombre_archivo = nombre_archivo_entry.get().upper()
         # print(nombre_archivo)
@@ -333,6 +333,9 @@ def manejar_escaneo_simple():
 
         escanear_documento(root, nombre_archivo, carpeta_destino, carpeta_actual, valor_especial)
         ventana_opciones.destroy()
+
+    # Al presionar Enter en el Entry, se llama a procesar_escaneo_simple
+    nombre_archivo_entry.bind("<Return>", procesar_escaneo_simple)
 
     tk.Button(ventana_opciones, text="Escanear", command=procesar_escaneo_simple).pack(padx=10, pady=5)
 
