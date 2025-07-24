@@ -3,6 +3,23 @@ import win32com.client
 from tkinter import messagebox, Toplevel, Label, Button
 from PIL import Image, ImageTk
 from resources import centrar_ventana_hija, icon_path
+import pythoncom
+
+def imprimir_documento(ruta_imagen):
+    try:
+        # Inicializar COM manualmente en caso se llame desde hilos
+        pythoncom.CoInitialize()
+
+        if not os.path.exists(ruta_imagen):
+            raise FileNotFoundError(f"No se encontró el archivo: {ruta_imagen}")
+
+        ruta_absoluta = os.path.abspath(ruta_imagen)
+
+        # Usar el comando 'print' para enviar a la impresora predeterminada
+        os.startfile(ruta_absoluta, "print")
+    
+    except Exception as e:
+        messagebox.showerror("Error al Imprimir", f"No se pudo imprimir: {e}")
 
 def escanear_documento(root, nombre_archivo, carpeta_destino, carpeta_actual, nombre_especial="", dpi=75):
     try:
