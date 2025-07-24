@@ -6,12 +6,12 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter import ttk
 from datetime import datetime
-from resources import asignar_numero_mas_reciente, centrar_ventana, centrar_ventana_hija, icon_path
+from resources import asignar_numero_mas_reciente, centrar_ventana, centrar_ventana_hija, es_carpeta_indexada, icon_path
 
 # Modificar a mas nombres
-nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"]
+nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "KURAX", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"]
 opciones_web = ["JACKPOT", "VALE DE REGISTRO", "LUNES REGALON", "VIERNES DONATELO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"]
-nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"] 
+nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"]
 nombres_especial_const = nombres_especial.copy()
 
 # Variable global para la carpeta destino
@@ -27,17 +27,6 @@ root.title(f"Escáner AT")
 root.iconbitmap(icon_path)
 root.resizable(False, False)
 centrar_ventana(root, 400, 400)
-
-def comparacion_carpeta_fecha():
-    global carpeta_actual
-
-    fecha_actual = datetime.now()
-    fecha_actual = datetime.strftime(fecha_actual,'%d/%m/%Y %H:%M')
-
-    dia_carpeta = carpeta_actual[-8:-6] # Extrae el dia de la carpeta
-    dia_fecha = fecha_actual[0:2]
-
-    return dia_carpeta == dia_fecha
 
 def verificar_o_crear_ruta(ruta_base, carpeta1, carpeta2, carpeta3):
     ruta_carpeta1 = os.path.join(ruta_base, carpeta1)
@@ -97,16 +86,24 @@ def seleccionar_carpeta_destino(tk, actualizar_reloj):
         root.destroy()  # Cerrar la aplicación si no se selecciona ninguna carpeta
     else:
 
-        es_igual_fecha = comparacion_carpeta_fecha()
-        carpeta_hab = "red" if es_igual_fecha else "gray"
+        # Verificar si el formato de la carpeta es correcto
+        es_carpeta_correcta = es_carpeta_indexada(carpeta_actual)
+
+        # Crear carpeta "pizarras ..."" por defecto si no existe
+        ruta_pizarras = os.path.join(carpeta_destino, f'PIZARRAS {carpeta_actual}')
+        
+        if not os.path.exists(ruta_pizarras) and es_carpeta_correcta:
+            os.makedirs(ruta_pizarras)
+
+        carpeta_hab = "red" if es_carpeta_correcta else "gray"
 
         # Carpeta actual
         label_carpeta = tk.Label(root, text=carpeta_actual, font=("Arial", 12), fg=(carpeta_hab))  # Fuente de 10px
         label_carpeta.pack(pady=5)
 
-        if not es_igual_fecha:
-            centrar_ventana(root, 400, 380)
-            label_carpeta = tk.Label(root, text="La fecha no es la misma", font=("Arial", 8, "italic"), fg=("gray"))  # Fuente de 10px
+        if not es_carpeta_correcta:
+            centrar_ventana(root, 400, 420)
+            label_carpeta = tk.Label(root, text="La fecha o formato es incorrecto", font=("Arial", 8, "italic"), fg=("gray"))  # Fuente de 10px
             label_carpeta.pack(pady=2)
 
         # Frame para organizar los botones
@@ -129,6 +126,10 @@ def seleccionar_carpeta_destino(tk, actualizar_reloj):
 
         # Iniciar actualización del reloj
         actualizar_reloj()
+
+# Función para imprimir todas las pizarras en la carpeta pizarras
+def imprimir_pizarras():
+    print("Imprimiendo todas las pizarras...")
 
 # Función para actualizar el directorio de la carpeta segun el escaneo sea especial o no
 def actualizar_carpeta_destino(es_metodo_especial):

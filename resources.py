@@ -1,6 +1,14 @@
-
 import sys
 import os
+import re
+from datetime import datetime
+
+def resource_path(relative_path):
+    """Encuentra el recurso empaquetado o en el directorio de desarrollo."""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 def centrar_ventana(ventana, ancho, alto):
 
     # Obtener medidas de pantalla
@@ -40,8 +48,7 @@ automaticamente
 def asignar_numero_mas_reciente(ruta_origen, ruta_actual, web, tipo="AUTO"):
 
     # Ruta completa de promociones segun carpeta actual
-    nombre_carpeta_promociones = "PROMOCIONES " + ruta_actual
-    ruta_base_carpeta_promociones = os.path.join(ruta_origen, nombre_carpeta_promociones)
+    ruta_base_carpeta_promociones = os.path.join(ruta_origen, f'PROMOCIONES {ruta_actual}')
                                 
     numero = 1 # Numero por defecto
     archivos_encontrados = [] # Lista de archivos encontrados
@@ -79,11 +86,25 @@ def asignar_numero_mas_reciente(ruta_origen, ruta_actual, web, tipo="AUTO"):
     valor_especial = f"{web} {numero}" # Concatenacion de valores de recurso y numero
     return valor_especial
 
-def resource_path(relative_path):
-    """Encuentra el recurso empaquetado o en el directorio de desarrollo."""
-    if hasattr(sys, '_MEIPASS'):
-        return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath("."), relative_path)
+"""
+Función para verificar si es una carpeta indexada y con la fecha actual
+retorna True si el nombre de la carpeta coincide con el dia actual y el formato
+y False en caso el nombre de la carpeta no coincida
+ejm:
+T1 - YEROMI ZAVALA 24.07.25 (True) (Dia actual 24.07.25)
+T1 - YEROMI ZAVALA 20.06.25 (False)
+24.07.24 (False)
+"""
+def es_carpeta_indexada(carpeta_actual):
+    fecha_actual = datetime.strftime(datetime.now(),'%d.%m.%y')
+
+    formato_carpeta = fr"^T[123]\s-\s[A-Z]+\s[A-Z]+\s{re.escape(fecha_actual)}$"
+    es_formato_correcto = re.match(formato_carpeta, carpeta_actual)
+
+    # print(f'Verificando carpeta: {carpeta_actual}')
+    # print(bool(es_formato_correcto))
+
+    return bool(es_formato_correcto)
 
 # Carga el icono usando la ruta adaptada
 icon_path = resource_path("img/apuesta_total.ico")
