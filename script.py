@@ -32,7 +32,8 @@ def verificar_o_crear_ruta(ruta_base, carpeta1, carpeta2, carpeta3):
     ruta_carpeta1 = os.path.join(ruta_base, carpeta1)
     ruta_carpeta2 = os.path.join(ruta_carpeta1, carpeta2)
     ruta_carpeta3 = os.path.join(ruta_carpeta2, carpeta3)
-    
+    ruta_carpeta_pizarras = os.path.join(ruta_carpeta3, f'PIZARRAS {carpeta3}')
+
     # Verifica y crea la primera carpeta si no existe
     if not os.path.exists(ruta_carpeta1):
         os.makedirs(ruta_carpeta1)
@@ -44,6 +45,10 @@ def verificar_o_crear_ruta(ruta_base, carpeta1, carpeta2, carpeta3):
     # Verifica y crea la tercera carpeta si no existe
     if not os.path.exists(ruta_carpeta3):
         os.makedirs(ruta_carpeta3)
+
+    # Verifica y crea la carpeta de pizarras si no existe
+    if not os.path.exists(ruta_carpeta_pizarras):
+        os.makedirs(ruta_carpeta_pizarras)
     
     # Asigna la ruta final a una variable
     ruta_final = ruta_carpeta3
@@ -89,12 +94,6 @@ def seleccionar_carpeta_destino(tk, actualizar_reloj):
         # Verificar si el formato de la carpeta es correcto
         es_carpeta_correcta = es_carpeta_indexada(carpeta_actual)
 
-        # Crear carpeta "pizarras ..."" por defecto si no existe
-        ruta_pizarras = os.path.join(carpeta_destino, f'PIZARRAS {carpeta_actual}')
-        
-        if not os.path.exists(ruta_pizarras) and es_carpeta_correcta:
-            os.makedirs(ruta_pizarras)
-
         carpeta_hab = "red" if es_carpeta_correcta else "gray"
 
         # Carpeta actual
@@ -106,23 +105,32 @@ def seleccionar_carpeta_destino(tk, actualizar_reloj):
             label_carpeta = tk.Label(root, text="La fecha o formato es incorrecto", font=("Arial", 8, "italic"), fg=("gray"))  # Fuente de 10px
             label_carpeta.pack(pady=2)
 
-        # Frame para organizar los botones
+        # Frame general para organizar botones
         frame_botones = tk.Frame(root)
         frame_botones.pack(pady=15)
 
-        # Fila superior - 3 botones centrados
-        btn_escanear = tk.Button(frame_botones, text="Escaneo general", command=manejar_escaneo)
-        btn_escanear.grid(row=0, column=0, padx=10)
+        # Subframe superior - 3 botones centrados
+        frame_superior = tk.Frame(frame_botones)
+        frame_superior.pack()
 
-        btn_jackpot = tk.Button(frame_botones, text="Escaneo especial", command=manejar_escaneo_especial)
-        btn_jackpot.grid(row=0, column=1, padx=10)
+        btn_escanear = tk.Button(frame_superior, text="Escaneo general", command=manejar_escaneo)
+        btn_escanear.pack(side="left", padx=10)
 
-        btn_carpeta = tk.Button(frame_botones, text="Carpeta", command=ver_carpeta)
-        btn_carpeta.grid(row=0, column=2, padx=10)
+        btn_jackpot = tk.Button(frame_superior, text="Escaneo especial", command=manejar_escaneo_especial)
+        btn_jackpot.pack(side="left", padx=10)
 
-        # Botón inferior centrado
-        btn_simple = tk.Button(frame_botones, text="Escaneo simple", command=manejar_escaneo_simple)
-        btn_simple.grid(row=1, column=0, columnspan=3, pady=10)  # Ocupa las 3 columnas para quedar centrado
+        btn_carpeta = tk.Button(frame_superior, text="Carpeta", command=ver_carpeta)
+        btn_carpeta.pack(side="left", padx=10)
+
+        # Subframe inferior - 2 botones centrados
+        frame_inferior = tk.Frame(frame_botones)
+        frame_inferior.pack(pady=10)
+
+        btn_simple = tk.Button(frame_inferior, text="Escaneo simple", command=manejar_escaneo_simple)
+        btn_simple.pack(side="left", padx=15)
+
+        btn_imprimir = tk.Button(frame_inferior, text="Imprimir pizarras", command=imprimir_pizarras)
+        btn_imprimir.pack(side="left", padx=15)
 
         # Iniciar actualización del reloj
         actualizar_reloj()
