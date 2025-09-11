@@ -24,17 +24,27 @@ root.title(f"Escáner AT")
 root.iconbitmap(icon_path)
 root.resizable(False, False)
 
-# Crea un menú principal
-menu_bar = tk.Menu(root)
-
-# Crear un submenú "Opciones principales"
-menu_opciones = tk.Menu(menu_bar, tearoff=0) 
+"""
+DISEÑO DEL MENU DE VENTANA PRINCIPAL
+"""
+menu_bar = tk.Menu(root) # Crea un menú principal
 
 # Establecer un diccionario con los datos que seran compartidos entre funciones
 datos_compartidos = {
   "root": root,
   "icon_path": icon_path,
 }  
+
+""""
+Menu principal contiene:
+- Opciones principales
+  * Opciones principales
+  * Opciones especiales
+  * Promociones
+"""
+menu_opciones = tk.Menu(menu_bar, tearoff=0) # Crear un submenú "Opciones principales"
+menu_bar.add_cascade(label="Configuración", menu=menu_opciones) # Agregar el submenú al menú principal
+root.config(menu=menu_bar) # Asociar el menú a la ventana
 
 menu_opciones.add_command(
   label="Opciones principales",
@@ -48,12 +58,6 @@ menu_opciones.add_command(
   label="Promociones",
   command=lambda: configurar_promociones(datos_compartidos)
 )
-
-# Agregar el submenú al menú principal
-menu_bar.add_cascade(label="Configuración", menu=menu_opciones)
-
-# Asociar el menú a la ventana
-root.config(menu=menu_bar)
 
 # # Obtener fecha y hora actual y formatearla
 fecha_actual = datetime.strftime(datetime.now(),'%d/%m/%Y %H:%M')
