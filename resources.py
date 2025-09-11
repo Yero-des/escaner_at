@@ -9,6 +9,18 @@ def resource_path(relative_path):
         return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.abspath("."), relative_path)
 
+"""
+Funcion para actualizar el reloj cada segundo
+retorna la fecha y hora actual en formato 'dd/mm/yyyy hh:mm'
+ejm: 24/07/2024 14:30
+"""
+def actualizar_reloj(root, label):
+  global fecha_actual
+
+  fecha_formateada = datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M') # Formatear fecha y hora actual
+  label.config(text=fecha_formateada) # Actualizar la etiqueta con la fecha y hora actual
+  root.after(1000, lambda: actualizar_reloj(root, label))  # Llama a esta función nuevamente en 1 segundo
+
 def centrar_ventana(ventana, ancho, alto):
 
     ventana.withdraw()  # Ocultar mientras se configura
