@@ -11,6 +11,8 @@ def resource_path(relative_path):
 
 def centrar_ventana(ventana, ancho, alto):
 
+    ventana.withdraw()  # Ocultar mientras se configura
+
     # Obtener medidas de pantalla
     screen_width = ventana.winfo_screenwidth()
 
@@ -21,7 +23,11 @@ def centrar_ventana(ventana, ancho, alto):
     
     ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
 
+    ventana.deiconify() # Mostrar la ventana después de configurar
+
 def centrar_ventana_hija(ventana, ancho, alto, padre):
+
+    ventana.withdraw()  # Ocultar mientras se configura
 
     # Obtener la posición de la ventana padre
     padre_x = padre.winfo_rootx()
@@ -34,6 +40,8 @@ def centrar_ventana_hija(ventana, ancho, alto, padre):
     y = padre_y + (padre_alto - alto) // 2
     
     ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
+
+    ventana.deiconify() # Mostrar la ventana después de configurar
 
 """
 Funcion para asignar el numero mas reciente segun los archivos

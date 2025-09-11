@@ -9,6 +9,7 @@ from tkinter import filedialog, messagebox
 from tkinter import ttk
 from datetime import datetime
 from resources import asignar_numero_mas_reciente, centrar_ventana, centrar_ventana_hija, es_carpeta_indexada, icon_path
+from widgets.opciones_widget import *
 
 # Modificar a mas nombres
 nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "KURAX", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"]
@@ -25,11 +26,43 @@ index = 0  # Índice para seguir la lista de nombres
 
 # Crear ventana principal
 root = tk.Tk()
+centrar_ventana(root, 400, 400) # Centramos la ventana principal justo despues de crearla
 root.title(f"Escáner AT")
 root.iconbitmap(icon_path)
 root.resizable(False, False)
-centrar_ventana(root, 400, 400)
 
+# Crea un menú principal
+menu_bar = tk.Menu(root)
+
+# Crear un submenú "Opciones principales"
+menu_opciones = tk.Menu(menu_bar, tearoff=0) 
+
+# Establecer un diccionario con los datos que seran compartidos entre funciones
+datos_compartidos = {
+    "root": root,
+    "icon_path": icon_path,
+}  
+
+menu_opciones.add_command(
+    label="Opciones principales",
+    command=lambda: configurar_opciones_principales(datos_compartidos)
+)
+menu_opciones.add_command(
+    label="Opciones especiales", 
+    command= lambda: configurar_opciones_especiales(datos_compartidos)
+)
+menu_opciones.add_command(
+    label="Promociones",
+    command=lambda: configurar_promociones(datos_compartidos)
+)
+
+# Agregar el submenú al menú principal
+menu_bar.add_cascade(label="Configuración", menu=menu_opciones)
+
+# Asociar el menú a la ventana
+root.config(menu=menu_bar)
+
+# Función para verificar y crear la estructura de carpetas
 def verificar_o_crear_ruta(ruta_base, carpeta1, carpeta2, carpeta3):
 
     ruta_carpeta1 = os.path.join(ruta_base, carpeta1)
@@ -257,11 +290,12 @@ def manejar_escaneo_especial():
 
             # Crear una ventana emergente para elegir opciones
             ventana_opciones = tk.Toplevel(root)
+            centrar_ventana_hija(ventana_opciones, 300, 200, root)
+
             ventana_opciones.title("Seleccionar información")
             ventana_opciones.iconbitmap(icon_path)
             ventana_opciones.resizable(False, False)
             ventana_opciones.focus_force()
-            centrar_ventana_hija(ventana_opciones, 300, 200, root)
 
             ventana_opciones.grab_set()
 
@@ -351,12 +385,12 @@ def continuar_escaneo():
 def manejar_escaneo_simple():
     # Crear una ventana emergente para elegir opciones
     ventana_opciones = tk.Toplevel(root)
+    centrar_ventana_hija(ventana_opciones, 300, 100, root) # LLamar funcion justo despues de crear la ventana
+
     ventana_opciones.title("Datos de escaneo")
     ventana_opciones.iconbitmap(icon_path)
     ventana_opciones.resizable(False, False)
     ventana_opciones.focus_force()
-
-    centrar_ventana_hija(ventana_opciones, 300, 100, root)
     actualizar_carpeta_destino(True)
 
     ventana_opciones.grab_set()

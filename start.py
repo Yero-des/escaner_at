@@ -24,7 +24,7 @@ imagen = ImageTk.PhotoImage(imagen_redimensionada)
 
 # Etiqueta para mostrar la imagen
 label_imagen = tk.Label(root, image=imagen)
-label_imagen.pack(pady=5)  # La imagen se coloca en la parte superior
+label_imagen.pack(pady=0)  # La imagen se coloca en la parte superior
 
 # Etiqueta para mostrar la fecha encima de los botones
 label_fecha = tk.Label(root, text=fecha_actual, font=("Arial", 10, "bold"))  # Fuente de 15px
