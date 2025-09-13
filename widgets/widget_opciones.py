@@ -1,14 +1,7 @@
 import os
-import locale
-import re
-from pathlib import Path
-from PIL import Image
-from wia import escanear_documento, imprimir_documento
 import tkinter as tk
-from tkinter import filedialog, messagebox
-from tkinter import ttk
-from datetime import datetime
-from resources import centrar_ventana_hija, actualizar_carpeta_destino
+from tkinter import messagebox
+from resources import centrar_ventana_hija
 
 def configurar_opciones_principales(datos_compartidos):
 

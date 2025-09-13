@@ -16,8 +16,8 @@ def procesar_seleccion(ventana, datos_compartidos, datos_secundarios, unico=Fals
   nombres_especial_const = datos_compartidos["nombres_especial_const"]
   carpeta_actual = datos_compartidos["carpeta_actual"]
 
-  combobox_web = datos_secundarios["combobox_web"]
-  combobox_numero = datos_secundarios["combobox_numero"]
+  combobox_web = datos_secundarios["combobox_web"].get()
+  combobox_numero = datos_secundarios["combobox_numero"].get()
 
   nombres_especial = []
 
@@ -102,8 +102,8 @@ def manejar_escaneo_especial(datos_compartidos):
 
   # Establecer datos secundarios mendiante funciones
   datos_secundarios = {
-    "combobox_web": combobox_web.get(),
-    "combobox_numero": combobox_numero.get(),
+    "combobox_web": combobox_web,
+    "combobox_numero": combobox_numero,
   }
 
   # Botón para escaneo multiple

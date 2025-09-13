@@ -1,5 +1,4 @@
 from tkinter import messagebox
-from resources import actualizar_carpeta_destino
 from wia import escanear_documento
 
 # Función que maneja el escaneo general
@@ -9,8 +8,6 @@ def manejar_escaneo_general(datos_compartidos):
   carpeta_actual = datos_compartidos["carpeta_actual"]
   carpeta_destino = datos_compartidos["carpeta_destino"]
   nombres_principal = datos_compartidos["nombres_principal"]
-
-  actualizar_carpeta_destino(datos_compartidos, False)
 
   for nombre in nombres_principal:
     nombre_actual = nombre

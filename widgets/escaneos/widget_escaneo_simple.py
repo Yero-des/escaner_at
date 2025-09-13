@@ -1,14 +1,7 @@
 import os
-import locale
-import re
-from pathlib import Path
-from PIL import Image
-from wia import escanear_documento, imprimir_documento
+from wia import escanear_documento
 import tkinter as tk
-from tkinter import filedialog, messagebox
-from tkinter import ttk
-from datetime import datetime
-from resources import actualizar_carpeta_destino, asignar_numero_mas_reciente, centrar_ventana, centrar_ventana_hija, icon_path
+from resources import asignar_numero_mas_reciente, centrar_ventana_hija, icon_path
 
 # Funcion para realizar un escaneo simple
 def manejar_escaneo_simple(datos_compartidos):

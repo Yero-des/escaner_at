@@ -143,14 +143,11 @@ Frame superior contiene:
 - Boton escaneo general
 - Boton escaneo especial
 """
-btn_escanear = tk.Button(frame_superior, text="Escaneo general", command= lambda: manejar_escaneo_general(datos_compartidos))
+btn_escanear = tk.Button(frame_superior, text="Escaneo general", command= lambda: manejar_escaneo_general(datos_compartidos), width=15)
 btn_escanear.pack(side="left", padx=10)
 
-btn_jackpot = tk.Button(frame_superior, text="Escaneo especial", command= lambda: manejar_escaneo_especial(datos_compartidos))
+btn_jackpot = tk.Button(frame_superior, text="Escaneo especial", command= lambda: manejar_escaneo_especial(datos_compartidos), width=15)
 btn_jackpot.pack(side="left", padx=10)
-
-btn_simple = tk.Button(frame_superior, text="Escaneo simple", command= lambda: manejar_escaneo_simple(datos_compartidos))
-btn_simple.pack(side="left", padx=10)
 
 # Subframe inferior - 2 botones centrados
 frame_inferior = tk.Frame(frame_botones)
@@ -158,9 +155,13 @@ frame_inferior.pack(pady=10)
 
 """"
 Frame inferior contiene:
+- Boton escaneo simple
 - Boton imprimir pizarras
 """
-btn_imprimir = tk.Button(frame_inferior, text="Imprimir pizarras", command= lambda: imprimir_pizarras(datos_compartidos))
+btn_simple = tk.Button(frame_inferior, text="Escaneo simple", command= lambda: manejar_escaneo_simple(datos_compartidos), width=15)
+btn_simple.pack(side="left", padx=10)
+
+btn_imprimir = tk.Button(frame_inferior, text="Imprimir pizarras", command= lambda: imprimir_pizarras(datos_compartidos), width=15)
 btn_imprimir.pack(side="left", padx=10)
 
 # Iniciar actualización del reloj
