@@ -69,10 +69,10 @@ se creara el archivo
 (JACKPOT 3)
 automaticamente
 """
-def asignar_numero_mas_reciente(ruta_origen, ruta_actual, web, tipo="AUTO"):
+def asignar_numero_mas_reciente(ruta_origen, ruta_actual, web, nombre_carpeta, tipo="AUTO"):
 
     # Ruta completa de promociones segun carpeta actual
-    ruta_base_carpeta_promociones = os.path.join(ruta_origen, f'PROMOCIONES {ruta_actual}')
+    ruta_base_carpeta_promociones = os.path.join(ruta_origen, f'{nombre_carpeta} {ruta_actual}')
                                 
     numero = 1 # Numero por defecto
     archivos_encontrados = [] # Lista de archivos encontrados
@@ -130,7 +130,11 @@ def es_carpeta_indexada(carpeta_actual):
 
     return bool(es_formato_correcto)
 
-# Función para actualizar el directorio de la carpeta segun el escaneo sea especial o no
+# Función para actualizar el directorio de la carpeta segun el escaneo sea especial o
+"""
+Función para actualizar el directorio de la carpeta segun el escaneo sea especial o no
+
+"""
 def actualizar_carpeta_destino(datos_compartidos, es_metodo_especial):
     
     carpeta_destino = datos_compartidos["carpeta_destino"]

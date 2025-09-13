@@ -2,24 +2,12 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from datetime import datetime
 from resources import *
+from widgets.escaneos.widget_escaneo_especial import manejar_escaneo_especial
 from widgets.widget_opciones import *
-from widgets.widgets_inicio import seleccionar_carpeta_destino
-
-"""
-INICIALIZACION DE VARIABLES GLOBALES
-"""
-# Modificar a mas nombres
-nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "KURAX", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"]
-opciones_web = ["JACKPOT", "VALE DE REGISTRO", "LUNES REGALON", "VIERNES DONATELO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"]
-nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"]
-nombres_especial_const = nombres_especial.copy()
-
-# Variable global para la carpeta destino
-carpeta_destino = ""
-carpeta_destino_no_modificable = ""
-carpeta_actual = ""
-valor_especial = "JACKPOT 1"
-index = 0  # Índice para seguir la lista de nombres
+from widgets.widget_inicio import seleccionar_carpeta_destino
+from widgets.escaneos.widget_escaneo_general import manejar_escaneo_general
+from widgets.escaneos.widget_escaneo_simple import manejar_escaneo_simple
+from widgets.widget_pizarras import imprimir_pizarras
 
 """
 DISEÑO INICIAL DE LA VENTANA PRINCIPAL
@@ -31,18 +19,29 @@ root.iconbitmap(icon_path)
 root.resizable(False, False)
 
 """
+INICIALIZACION DE VARIABLES GLOBALES
+"""
+# Establecer un diccionario con los datos que seran compartidos entre funciones
+nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"]
+datos_compartidos = {
+  #
+  "nombres_principal": ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "KURAX", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"],
+  "opciones_web": ["JACKPOT", "VALE DE REGISTRO", "LUNES REGALON", "VIERNES DONATELO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"],
+  "nombres_especial": nombres_especial,
+  "nombres_especial_const": nombres_especial.copy(),
+  # Variables globales simple
+  "root": root,
+  "icon_path": icon_path,
+  "carpeta_destino": "",
+  "carpeta_destino_no_modificable": "",
+  "carpeta_actual": "",
+  "valor_especial": "JACKPOT 1",
+}  
+
+"""
 DISEÑO DEL MENU DE VENTANA PRINCIPAL
 """
 menu_bar = tk.Menu(root) # Crea un menú principal
-
-# Establecer un diccionario con los datos que seran compartidos entre funciones
-datos_compartidos = {
-  "root": root,
-  "icon_path": icon_path,
-  "carpeta_destino": carpeta_destino,
-  "carpeta_destino_no_modificable": carpeta_destino_no_modificable,
-  "carpeta_actual": carpeta_actual,
-}  
 
 """"
 Menu principal contiene:
@@ -144,24 +143,25 @@ Frame superior contiene:
 - Boton escaneo general
 - Boton escaneo especial
 """
-# btn_escanear = tk.Button(frame_superior, text="Escaneo general", command=manejar_escaneo)
-# btn_escanear.pack(side="left", padx=10)
+btn_escanear = tk.Button(frame_superior, text="Escaneo general", command= lambda: manejar_escaneo_general(datos_compartidos))
+btn_escanear.pack(side="left", padx=10)
 
-# btn_jackpot = tk.Button(frame_superior, text="Escaneo especial", command=manejar_escaneo_especial)
-# btn_jackpot.pack(side="left", padx=10)
+btn_jackpot = tk.Button(frame_superior, text="Escaneo especial", command= lambda: manejar_escaneo_especial(datos_compartidos))
+btn_jackpot.pack(side="left", padx=10)
 
-# btn_carpeta = tk.Button(frame_superior, text="Carpeta", command=ver_carpeta)
-# btn_carpeta.pack(side="left", padx=10)
+btn_simple = tk.Button(frame_superior, text="Escaneo simple", command= lambda: manejar_escaneo_simple(datos_compartidos))
+btn_simple.pack(side="left", padx=10)
 
-# # Subframe inferior - 2 botones centrados
-# frame_inferior = tk.Frame(frame_botones)
-# frame_inferior.pack(pady=10)
+# Subframe inferior - 2 botones centrados
+frame_inferior = tk.Frame(frame_botones)
+frame_inferior.pack(pady=10)
 
-# btn_simple = tk.Button(frame_inferior, text="Escaneo simple", command=manejar_escaneo_simple)
-# btn_simple.pack(side="left", padx=15)
-
-# btn_imprimir = tk.Button(frame_inferior, text="Imprimir pizarras", command=imprimir_pizarras)
-# btn_imprimir.pack(side="left", padx=15)
+""""
+Frame inferior contiene:
+- Boton imprimir pizarras
+"""
+btn_imprimir = tk.Button(frame_inferior, text="Imprimir pizarras", command= lambda: imprimir_pizarras(datos_compartidos))
+btn_imprimir.pack(side="left", padx=10)
 
 # Iniciar actualización del reloj
 actualizar_reloj(root, label=label_fecha)

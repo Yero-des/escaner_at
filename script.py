@@ -10,51 +10,6 @@ from tkinter import ttk
 from datetime import datetime
 from resources import asignar_numero_mas_reciente, centrar_ventana, centrar_ventana_hija, icon_path
 
-# Función para imprimir todas las pizarras en la carpeta pizarras
-def imprimir_pizarras():
-    global  carpeta_destino_no_modificable, carpeta_actual
-
-    carpeta_pizarras = f"PIZARRAS {carpeta_actual[-8:]}"
-    carpeta_principal = os.path.dirname(carpeta_destino_no_modificable)
-    ruta_carpeta_pizarras = os.path.join(carpeta_principal, carpeta_pizarras)
-
-    # Validar si se encontró
-    if not os.path.exists(ruta_carpeta_pizarras):
-        messagebox.showinfo("Error", "No se encontró la carpeta 'PIZARRAS'")
-        return
-
-    # Buscar imágenes en la carpeta
-    extensiones_validas = ('.jpg', '.jpeg', '.png', '.bmp', '.gif', '.tiff')
-    ruta_archivos = [
-        os.path.join(ruta_carpeta_pizarras, archivo)
-        for archivo in os.listdir(ruta_carpeta_pizarras)
-        if archivo.lower().endswith(extensiones_validas)
-    ]
-
-    if not ruta_archivos:
-        messagebox.showinfo("Sin Archivos", f'No se encontraron imágenes en la carpeta: "{ruta_carpeta_pizarras}"')
-        return
-
-    for ruta_archivo in ruta_archivos:
-
-        # Tomamos la ruta completa de la imagen
-        ruta_archivo_actual = ruta_archivo
-        nombre_archivo_actual = re.split(r"[\\/]", ruta_archivo_actual)[-1] # Tomanos el ultimo elemento de la ruta
-
-        respuesta = messagebox.askyesnocancel(
-            "Imprimir Documento",
-            f"¿Deseas imprimir {nombre_archivo_actual}?\n(Sí para escanear, No para saltar)"
-        )
-
-        if respuesta is None:
-            messagebox.showinfo("Cancelado", "El proceso ha sido cancelado.")
-            return
-
-        if respuesta:
-            imprimir_documento(ruta_archivo_actual)
-
-    # messagebox.showinfo("Completado", "Todos los documentos han sido procesados.")
-
 # Función para actualizar el directorio de la carpeta segun el escaneo sea especial o no
 def actualizar_carpeta_destino(es_metodo_especial):
     global carpeta_destino, carpeta_actual
@@ -78,28 +33,6 @@ def actualizar_carpeta_destino(es_metodo_especial):
 
     # print(f"Carpeta Destino: {carpeta_destino}")
 
-# Función para manejar el escaneo y saltar archivos
-def manejar_escaneo():
-    global carpeta_actual
-
-    actualizar_carpeta_destino(False)
-
-    for nombre in nombres_principal:
-        nombre_actual = nombre
-        
-        # Preguntar al usuario si desea escanear o saltar
-        respuesta = messagebox.askyesnocancel("Escaneo de Documento", f"¿Deseas escanear {nombre_actual}?\n(Sí para escanear, No para saltar)")
-
-        if respuesta:
-            escanear_documento(root, nombre_actual, carpeta_destino, carpeta_actual)
-        
-        if respuesta == None:
-            messagebox.showinfo("Cancelado", "El proceso ha sido cancelado.")
-            index = 0
-            return
-        
-    messagebox.showinfo("Completado", "Todos los documentos han sido procesados")
-    
 # Funcion para manejar el escaneo y saltar archivos de jackpot 
 def manejar_escaneo_especial():
     global index, carpeta_actual, valor_especial
@@ -209,42 +142,3 @@ def continuar_escaneo():
     # Avanzar al siguiente nombre
     index += 1
     manejar_escaneo_especial()
-
-# Funcion para realizar un escaneo simple
-def manejar_escaneo_simple():
-    # Crear una ventana emergente para elegir opciones
-    ventana_opciones = tk.Toplevel(root)
-    centrar_ventana_hija(ventana_opciones, 300, 100, root) # LLamar funcion justo despues de crear la ventana
-
-    ventana_opciones.title("Datos de escaneo")
-    ventana_opciones.iconbitmap(icon_path)
-    ventana_opciones.resizable(False, False)
-    ventana_opciones.focus_force()
-    actualizar_carpeta_destino(True)
-
-    ventana_opciones.grab_set()
-
-    # Mensaje de instrucciones
-    nombre_archivo_entry = tk.Entry(ventana_opciones)
-    nombre_archivo_entry.pack(padx=10, pady=15)
-    
-    def procesar_escaneo_simple(event=None):
-
-        nombre_archivo = nombre_archivo_entry.get().upper()
-        # print(nombre_archivo)
-
-        valor_especial = asignar_numero_mas_reciente(
-            ruta_origen=carpeta_destino_no_modificable,
-            ruta_actual=carpeta_actual,
-            web="ARCHIVO"
-        )   
-
-        escanear_documento(root, nombre_archivo, carpeta_destino, carpeta_actual, valor_especial)
-        ventana_opciones.destroy()
-
-    # Al presionar Enter en el Entry, se llama a procesar_escaneo_simple
-    nombre_archivo_entry.bind("<Return>", procesar_escaneo_simple)
-
-    tk.Button(ventana_opciones, text="Escanear", command=procesar_escaneo_simple).pack(padx=10, pady=5)
-
-    ventana_opciones.mainloop()

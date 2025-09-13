@@ -39,7 +39,6 @@ def configurar_promociones(datos_compartidos):
 def ver_carpeta(datos_compartidos):
 
     carpeta_destino = datos_compartidos["carpeta_destino"]
-    actualizar_carpeta_destino(datos_compartidos, False)
 
     os.startfile(carpeta_destino)
     return
