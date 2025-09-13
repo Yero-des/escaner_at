@@ -8,7 +8,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter import ttk
 from datetime import datetime
-from resources import centrar_ventana_hija
+from resources import centrar_ventana_hija, actualizar_carpeta_destino
 
 def configurar_opciones_principales(datos_compartidos):
 
@@ -34,3 +34,12 @@ def configurar_opciones_especiales(datos_compartidos):
 
 def configurar_promociones(datos_compartidos):
     messagebox.showinfo("Opción 3", "Ejecutando opción 3...")
+
+# Función para abrir la carpeta actual en el explorador de archivos
+def ver_carpeta(datos_compartidos):
+
+    carpeta_destino = datos_compartidos["carpeta_destino"]
+    actualizar_carpeta_destino(datos_compartidos, False)
+
+    os.startfile(carpeta_destino)
+    return

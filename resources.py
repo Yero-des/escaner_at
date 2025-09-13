@@ -130,6 +130,34 @@ def es_carpeta_indexada(carpeta_actual):
 
     return bool(es_formato_correcto)
 
+# Función para actualizar el directorio de la carpeta segun el escaneo sea especial o no
+def actualizar_carpeta_destino(datos_compartidos, es_metodo_especial):
+    
+    carpeta_destino = datos_compartidos["carpeta_destino"]
+    carpeta_actual = datos_compartidos["carpeta_actual"]
+
+    carpeta_especial = "PROMOCIONES " + carpeta_actual
+    carpeta_especial_path = os.path.join(carpeta_destino, carpeta_especial)
+
+    # Corroborar si la carpeta ha sido modificada
+    es_carpeta_modificada = carpeta_destino.endswith(carpeta_especial)
+
+    # print(es_carpeta_modificada, es_metodo_especial)
+
+    if es_carpeta_modificada and es_metodo_especial:
+        pass  # No hacemos nada, ya es especial
+    elif es_carpeta_modificada and not es_metodo_especial:
+        # Quitar la última carpeta y dejar la ruta original
+        carpeta_destino = os.path.dirname(carpeta_destino)
+    elif not es_carpeta_modificada and es_metodo_especial:
+        # Cambiar a ruta especial
+        carpeta_destino = carpeta_especial_path
+
+    # print(f"Carpeta Destino: {carpeta_destino}")
+
+    datos_compartidos["carpeta_destino"] = carpeta_destino
+    datos_compartidos["carpeta_actual"] = carpeta_actual
+
 # Carga el icono usando la ruta adaptada
 icon_path = resource_path("img/apuesta_total.ico")
 img_path = resource_path("img/logo_apuesta_total.png")

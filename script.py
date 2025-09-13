@@ -78,16 +78,6 @@ def actualizar_carpeta_destino(es_metodo_especial):
 
     # print(f"Carpeta Destino: {carpeta_destino}")
 
-# Función para abrir la carpeta actual en el explorador de archivos
-def ver_carpeta():
-
-    global carpeta_destino
-
-    actualizar_carpeta_destino(False)
-
-    os.startfile(carpeta_destino)
-    return
-
 # Función para manejar el escaneo y saltar archivos
 def manejar_escaneo():
     global carpeta_actual

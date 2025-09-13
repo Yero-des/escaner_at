@@ -5,6 +5,9 @@ from resources import *
 from widgets.widget_opciones import *
 from widgets.widgets_inicio import seleccionar_carpeta_destino
 
+"""
+INICIALIZACION DE VARIABLES GLOBALES
+"""
 # Modificar a mas nombres
 nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "KURAX", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"]
 opciones_web = ["JACKPOT", "VALE DE REGISTRO", "LUNES REGALON", "VIERNES DONATELO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"]
@@ -18,7 +21,9 @@ carpeta_actual = ""
 valor_especial = "JACKPOT 1"
 index = 0  # Índice para seguir la lista de nombres
 
-# Crear ventana principal
+"""
+DISEÑO INICIAL DE LA VENTANA PRINCIPAL
+"""
 root = tk.Tk()
 centrar_ventana(root, 400, 400) # Centramos la ventana principal justo despues de crearla
 root.title(f"Escáner AT")
@@ -66,10 +71,7 @@ menu_opciones.add_command(
 menu_bar.add_cascade(label="Configuración", menu=menu_opciones)
 
 # ====== Menú de primer nivel que ejecuta algo directo ======
-def accion_directa():
-    print("Ejecutando acción directa...")  # aquí puedes llamar a tu función
-
-menu_bar.add_command(label="Reejecutar", command=accion_directa)
+menu_bar.add_command(label="Ver carpeta", command=lambda: ver_carpeta(datos_compartidos))
 
 # Asociar menú a la ventana
 root.config(menu=menu_bar)
@@ -129,14 +131,19 @@ if not es_carpeta_correcta:
 """
 DISEÑO DE LOS BOTONES DE LA VENTANA PRINCIPAL
 """
-# # Frame general para organizar botones
-# frame_botones = tk.Frame(root)
-# frame_botones.pack(pady=15)
+# Frame general para organizar botones
+frame_botones = tk.Frame(root)
+frame_botones.pack(pady=15)
 
-# # Subframe superior - 3 botones centrados
-# frame_superior = tk.Frame(frame_botones)
-# frame_superior.pack()
+# Subframe superior - 3 botones centrados
+frame_superior = tk.Frame(frame_botones)
+frame_superior.pack()
 
+""""
+Frame superior contiene:
+- Boton escaneo general
+- Boton escaneo especial
+"""
 # btn_escanear = tk.Button(frame_superior, text="Escaneo general", command=manejar_escaneo)
 # btn_escanear.pack(side="left", padx=10)
 
