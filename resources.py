@@ -1,6 +1,7 @@
 import sys
 import os
 import re
+import tkinter as tk
 from datetime import datetime
 
 def resource_path(relative_path):
@@ -15,11 +16,14 @@ retorna la fecha y hora actual en formato 'dd/mm/yyyy hh:mm'
 ejm: 24/07/2024 14:30
 """
 def actualizar_reloj(root, label):
-  global fecha_actual
-
-  fecha_formateada = datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M') # Formatear fecha y hora actual
-  label.config(text=fecha_formateada) # Actualizar la etiqueta con la fecha y hora actual
-  root.after(1000, lambda: actualizar_reloj(root, label))  # Llama a esta función nuevamente en 1 segundo
+    try:
+        fecha_actual = datetime.now()
+        fecha_formateada = datetime.strftime(fecha_actual, '%d/%m/%Y %H:%M')
+        label.config(text=fecha_formateada)
+        root.after(1000, lambda: actualizar_reloj(root, label))
+    except tk.TclError:
+        # Aquí llegas cuando root o label ya fueron destruidos
+        return
 
 def centrar_ventana(ventana, ancho, alto):
 

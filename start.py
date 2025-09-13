@@ -2,7 +2,8 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from datetime import datetime
 from resources import *
-from widgets.opciones_widget import *
+from widgets.widget_opciones import *
+from widgets.widgets_inicio import seleccionar_carpeta_destino
 
 # Modificar a mas nombres
 nombres_principal = ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "KURAX", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"]
@@ -33,6 +34,9 @@ menu_bar = tk.Menu(root) # Crea un menú principal
 datos_compartidos = {
   "root": root,
   "icon_path": icon_path,
+  "carpeta_destino": carpeta_destino,
+  "carpeta_destino_no_modificable": carpeta_destino_no_modificable,
+  "carpeta_actual": carpeta_actual,
 }  
 
 """"
@@ -42,25 +46,33 @@ Menu principal contiene:
   * Opciones especiales
   * Promociones
 """
-menu_opciones = tk.Menu(menu_bar, tearoff=0) # Crear un submenú "Opciones principales"
-menu_bar.add_cascade(label="Configuración", menu=menu_opciones) # Agregar el submenú al menú principal
-root.config(menu=menu_bar) # Asociar el menú a la ventana
+# Crear menú principal
+menu_bar = tk.Menu(root)
 
+# ====== Menú "Configuración" con submenú ======
+menu_opciones = tk.Menu(menu_bar, tearoff=0)
 menu_opciones.add_command(
-  label="Opciones principales",
-  command=lambda: configurar_opciones_principales(datos_compartidos)
+    label="Opciones principales",
+    command=lambda: configurar_opciones_principales(datos_compartidos)
 )
 menu_opciones.add_command(
-  label="Opciones especiales", 
-  command= lambda: configurar_opciones_especiales(datos_compartidos)
+    label="Opciones especiales", 
+    command=lambda: configurar_opciones_especiales(datos_compartidos)
 )
 menu_opciones.add_command(
-  label="Promociones",
-  command=lambda: configurar_promociones(datos_compartidos)
+    label="Promociones",
+    command=lambda: configurar_promociones(datos_compartidos)
 )
+menu_bar.add_cascade(label="Configuración", menu=menu_opciones)
 
-# # Obtener fecha y hora actual y formatearla
-fecha_actual = datetime.strftime(datetime.now(),'%d/%m/%Y %H:%M')
+# ====== Menú de primer nivel que ejecuta algo directo ======
+def accion_directa():
+    print("Ejecutando acción directa...")  # aquí puedes llamar a tu función
+
+menu_bar.add_command(label="Reejecutar", command=accion_directa)
+
+# Asociar menú a la ventana
+root.config(menu=menu_bar)
 
 # Cargar imagen
 imagen_original = Image.open(img_path)  # Reemplaza con la ruta de tu imagen
@@ -70,40 +82,53 @@ imagen = ImageTk.PhotoImage(imagen_redimensionada)
 """
 DISEÑO DE LA VENTANA PRINCIPAL
 """
-# Crear frame superior sin bordes
-frame_superior = tk.Frame(root, borderwidth=0, highlightthickness=0)
-frame_superior.pack(side="top", fill="x")
+# Crear frame contenedor sin bordes
+frame_contenedor = tk.Frame(root)
+frame_contenedor.pack(side="top", fill="x")
 
 """"
-Frame superior contiene:
+Frame contenedor contiene:
 - Imagen
 - Fecha y hora actual
+- Carpeta actual
+  * Aviso de formato incorrecto (si aplica)
 """
-# Etiqueta para mostrar la imagen
-label_imagen = tk.Label(frame_superior, image=imagen, borderwidth=0, highlightthickness=0)
-label_imagen.pack(fill="x")
+# Etiqueta imagen "Apuesta total"
+label_imagen = tk.Label(frame_contenedor, image=imagen, borderwidth=0, highlightthickness=0)
+label_imagen.grid(row=0, column=0) 
 
-# # Etiqueta para mostrar la fecha encima de los botones
-label_fecha = tk.Label(frame_superior, text=fecha_actual, font=("Arial", 10, "bold"))  # Fuente de 15px
-label_fecha.pack(fill="x")  # La fecha se coloca encima de los botones
+# ====== Tomar datos de pantalla emergente para seleccionar carpeta ======
+if seleccionar_carpeta_destino(datos_compartidos):  
+  messagebox.showerror("Error", "Debes seleccionar una carpeta de destino.")
+  root.destroy()
+  exit()  # Salir del programa si no se selecciona ninguna carpeta
 
-# # Seleccionar carpeta destino al inicio
-# # root.after(100, seleccionar_carpeta_destino(tk, actualizar_reloj(root, label_fecha)))  # Iniciar la selección de carpeta después de 100 ms
+es_carpeta_correcta = es_carpeta_indexada(datos_compartidos["carpeta_actual"]) # Verificar si el formato de la carpeta es correcto
+carpeta_hab = "red" if es_carpeta_correcta else "gray" # Color de la etiqueta segun formato correcto o no
 
-# # Verificar si el formato de la carpeta es correcto
-# es_carpeta_correcta = es_carpeta_indexada(carpeta_actual)
+# ====== Resto de etiquetas ======
 
-# carpeta_hab = "red" if es_carpeta_correcta else "gray"
+# Etiqueta de fecha y hora actual
+label_fecha = tk.Label(frame_contenedor, 
+  text=datetime.strftime(datetime.now(),'%d/%m/%Y %H:%M'), # Extraer fecha y hora actual
+  font=("Arial", 10, "bold") # Fuente de 10px
+)
+label_fecha.grid(row=1, column=0, pady=5, padx=5)
 
-# # Carpeta actual
-# label_carpeta = tk.Label(root, text=carpeta_actual, font=("Arial", 12), fg=(carpeta_hab))  # Fuente de 10px
-# label_carpeta.pack(pady=5)
+# Etiqueta de carpeta actual
+label_carpeta = tk.Label(frame_contenedor, text=datos_compartidos["carpeta_actual"], font=("Arial", 12), fg=(carpeta_hab))  # Fuente de 10px
+label_carpeta.grid(row=2, column=0, pady=5)
 
-# if not es_carpeta_correcta:
-#     centrar_ventana(root, 400, 420)
-#     label_carpeta = tk.Label(root, text="La fecha o formato es incorrecto", font=("Arial", 8, "italic"), fg=("gray"))  # Fuente de 10px
-#     label_carpeta.pack(pady=2)
+if not es_carpeta_correcta:
+  centrar_ventana(root, 400, 420)
 
+  # Etiqueta de aviso de formato incorrecto
+  label_carpeta = tk.Label(frame_contenedor, text="La fecha o formato es incorrecto", font=("Arial", 8, "italic"), fg=("gray"))  # Fuente de 10px
+  label_carpeta.grid(row=3, column=0, pady=2)
+
+"""
+DISEÑO DE LOS BOTONES DE LA VENTANA PRINCIPAL
+"""
 # # Frame general para organizar botones
 # frame_botones = tk.Frame(root)
 # frame_botones.pack(pady=15)
