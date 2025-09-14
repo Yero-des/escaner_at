@@ -4,7 +4,7 @@ from datetime import datetime
 from resources import *
 from widgets.escaneos.widget_escaneo_especial import manejar_escaneo_especial
 from widgets.widget_opciones import *
-from widgets.widget_inicio import seleccionar_carpeta_destino
+from widgets.widget_inicio import cambiar_carpeta_destino, seleccionar_carpeta_destino
 from widgets.escaneos.widget_escaneo_general import manejar_escaneo_general
 from widgets.escaneos.widget_escaneo_simple import manejar_escaneo_simple
 from widgets.widget_pizarras import imprimir_pizarras
@@ -56,21 +56,34 @@ menu_bar = tk.Menu(root)
 # ====== Menú "Configuración" con submenú ======
 menu_opciones = tk.Menu(menu_bar, tearoff=0)
 menu_opciones.add_command(
-    label="Opciones principales",
-    command=lambda: configurar_opciones_principales(datos_compartidos)
+  label="Opciones principales",
+  command=lambda: configurar_opciones_principales(datos_compartidos)
 )
 menu_opciones.add_command(
-    label="Opciones especiales", 
-    command=lambda: configurar_opciones_especiales(datos_compartidos)
+  label="Opciones especiales", 
+  command=lambda: configurar_opciones_especiales(datos_compartidos)
 )
 menu_opciones.add_command(
-    label="Promociones",
-    command=lambda: configurar_promociones(datos_compartidos)
+  label="Promociones",
+  command=lambda: configurar_promociones(datos_compartidos)
 )
 menu_bar.add_cascade(label="Configuración", menu=menu_opciones)
 
-# ====== Menú de primer nivel que ejecuta algo directo ======
-menu_bar.add_command(label="Ver carpeta", command=lambda: ver_carpeta(datos_compartidos))
+# ====== Menú "Carpetas" con  submenú ======
+menu_carpetas = tk.Menu(menu_bar, tearoff=0)
+menu_carpetas.add_command(
+  label="Cambiar carpeta destino", 
+  command=lambda: cambiar_carpeta_destino(
+    datos_compartidos, 
+    label_carpeta, 
+    label_carpeta_aviso
+  )
+) 
+menu_carpetas.add_command(
+  label="Ver carpeta",
+  command=lambda: ver_carpeta(datos_compartidos)
+)
+menu_bar.add_cascade(label="Carpetas", menu=menu_carpetas)
 
 # Asociar menú a la ventana
 root.config(menu=menu_bar)
@@ -120,12 +133,14 @@ label_fecha.grid(row=1, column=0, pady=5, padx=5)
 label_carpeta = tk.Label(frame_contenedor, text=datos_compartidos["carpeta_actual"], font=("Arial", 12), fg=(carpeta_hab))  # Fuente de 10px
 label_carpeta.grid(row=2, column=0, pady=5)
 
+# Etiqueta de aviso de formato incorrecto
+label_carpeta_aviso = tk.Label(frame_contenedor, text="La fecha o formato es incorrecto", font=("Arial", 8, "italic"), fg=("gray"))  # Fuente de 10px
+label_carpeta_aviso.grid(row=3, column=0, pady=2)
+label_carpeta_aviso.grid_remove()  # Ocultar la etiqueta inicialmente
+
 if not es_carpeta_correcta:
   centrar_ventana(root, 400, 420)
-
-  # Etiqueta de aviso de formato incorrecto
-  label_carpeta = tk.Label(frame_contenedor, text="La fecha o formato es incorrecto", font=("Arial", 8, "italic"), fg=("gray"))  # Fuente de 10px
-  label_carpeta.grid(row=3, column=0, pady=2)
+  label_carpeta_aviso.grid()  # Mostrar la etiqueta si la carpeta es incorrecta
 
 """
 DISEÑO DE LOS BOTONES DE LA VENTANA PRINCIPAL
