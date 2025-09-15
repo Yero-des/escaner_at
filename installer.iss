@@ -1,6 +1,6 @@
 [Setup]
 AppName=Escaner AT
-AppVersion=1.0
+AppVersion=1.21
 DefaultDirName={pf}\Escaner_AT
 DefaultGroupName=Escaner AT
 OutputBaseFilename=Instalador_Escaner_AT

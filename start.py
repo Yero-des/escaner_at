@@ -38,6 +38,11 @@ datos_compartidos = {
   "valor_especial": "JACKPOT 1",
 }  
 
+# Cargar imagen
+imagen_original = Image.open(img_path)  # Reemplaza con la ruta de tu imagen
+imagen_redimensionada = imagen_original.resize((400, 200))  # Ajustar tamaño
+imagen = ImageTk.PhotoImage(imagen_redimensionada)
+
 """
 DISEÑO DEL MENU DE VENTANA PRINCIPAL
 """
@@ -67,10 +72,20 @@ menu_opciones.add_command(
   label="Promociones",
   command=lambda: configurar_promociones(datos_compartidos)
 )
-menu_bar.add_cascade(label="Configuración", menu=menu_opciones)
+menu_bar.add_cascade(label="Configuración", menu=menu_opciones) # Agregar submenú al menu "Configuración"
 
+""""
+Menu carpetas contiene:
+- Carpetas
+  * Ver carpeta
+  * Cambiar carpeta destino
+"""
 # ====== Menú "Carpetas" con  submenú ======
 menu_carpetas = tk.Menu(menu_bar, tearoff=0)
+menu_carpetas.add_command(
+  label="Ver carpeta",
+  command=lambda: ver_carpeta(datos_compartidos)
+)
 menu_carpetas.add_command(
   label="Cambiar carpeta destino", 
   command=lambda: cambiar_carpeta_destino(
@@ -79,19 +94,8 @@ menu_carpetas.add_command(
     label_carpeta_aviso
   )
 ) 
-menu_carpetas.add_command(
-  label="Ver carpeta",
-  command=lambda: ver_carpeta(datos_compartidos)
-)
-menu_bar.add_cascade(label="Carpetas", menu=menu_carpetas)
-
-# Asociar menú a la ventana
-root.config(menu=menu_bar)
-
-# Cargar imagen
-imagen_original = Image.open(img_path)  # Reemplaza con la ruta de tu imagen
-imagen_redimensionada = imagen_original.resize((400, 200))  # Ajustar tamaño
-imagen = ImageTk.PhotoImage(imagen_redimensionada)
+menu_bar.add_cascade(label="Carpetas", menu=menu_carpetas) # Agregar submenú al menu "Carpetas"
+root.config(menu=menu_bar) # Asociar menú completo a la ventana principal
 
 """
 DISEÑO DE LA VENTANA PRINCIPAL
