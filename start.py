@@ -9,7 +9,7 @@ from widgets.escaneos.widget_escaneo_general import manejar_escaneo_general
 from widgets.escaneos.widget_escaneo_simple import manejar_escaneo_simple
 from widgets.widget_pizarras import imprimir_pizarras
 
-VERSION = "1.2.1"
+VERSION = "1.2.2"
 
 def main():
 
@@ -63,20 +63,20 @@ def main():
   menu_bar = tk.Menu(root)
 
   # ====== Menú "Configuración" con submenú ======
-  menu_opciones = tk.Menu(menu_bar, tearoff=0)
-  menu_opciones.add_command(
-    label="Opciones principales",
-    command=lambda: configurar_opciones_principales(datos_compartidos)
-  )
-  menu_opciones.add_command(
-    label="Opciones especiales", 
-    command=lambda: configurar_opciones_especiales(datos_compartidos)
-  )
-  menu_opciones.add_command(
-    label="Promociones",
-    command=lambda: configurar_promociones(datos_compartidos)
-  )
-  menu_bar.add_cascade(label="Configuración", menu=menu_opciones) # Agregar submenú al menu "Configuración"
+  # menu_opciones = tk.Menu(menu_bar, tearoff=0)
+  # menu_opciones.add_command(
+  #   label="Opciones principales",
+  #   command=lambda: configurar_opciones_principales(datos_compartidos)
+  # )
+  # menu_opciones.add_command(
+  #   label="Opciones especiales", 
+  #   command=lambda: configurar_opciones_especiales(datos_compartidos)
+  # )
+  # menu_opciones.add_command(
+  #   label="Promociones",
+  #   command=lambda: configurar_promociones(datos_compartidos)
+  # )
+  # menu_bar.add_cascade(label="Configuración", menu=menu_opciones) # Agregar submenú al menu "Configuración"
 
   """"
   Menu carpetas contiene:
@@ -123,7 +123,7 @@ def main():
   if seleccionar_carpeta_destino(datos_compartidos):  
     messagebox.showerror("Error", "Debes seleccionar una carpeta de destino.")
     root.destroy()
-    exit()  # Salir del programa si no se selecciona ninguna carpeta
+    return # Salir del programa si no se selecciona ninguna carpeta
 
   es_carpeta_correcta = es_carpeta_indexada(datos_compartidos["carpeta_actual"]) # Verificar si el formato de la carpeta es correcto
   carpeta_hab = "red" if es_carpeta_correcta else "gray" # Color de la etiqueta segun formato correcto o no
