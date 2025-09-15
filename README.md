@@ -16,6 +16,7 @@ python build.py
 ```
 git checkout main
 git pull origin main
+git merge v1.2.2
 git checkout -b v1.3.0
 git push -u origin v1.3.0
 ```
