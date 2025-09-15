@@ -48,15 +48,15 @@ print(f"✅ version.txt generado con la versión {version}")
 
 # Ejecutar PyInstaller automáticamente
 subprocess.run([
-    "pyinstaller",
-    "--onefile",
-    "--noconsole",
-    "--name", "ESCANER AT",
-    "--icon", "./img/apuesta_total.ico",
-    "--version-file", "version.txt",
-    "--add-data", "./img/logo_apuesta_total.png;img",
-    "--add-data", "./img/apuesta_total.ico;img",
-    "start.py"
+  "pyinstaller",
+  "--onefile",
+  "--noconsole",
+  "--name", "ESCANER AT",
+  "--icon", "./img/apuesta_total.ico",
+  "--version-file", "version.txt",
+  "--add-data", "./img/logo_apuesta_total.png;img",
+  "--add-data", "./img/apuesta_total.ico;img",
+  "start.py"
 ])
 
 print("✅ Ejecutable generado en la carpeta dist/")
@@ -68,7 +68,7 @@ AppName=Escaner AT
 AppVersion={version}
 DefaultDirName={{autopf}}\\Escaner_AT
 DefaultGroupName=Escaner AT
-OutputBaseFilename=Instalador_Escaner_AT_{version}
+OutputBaseFilename=Instalador Escaner AT v{version}
 SetupIconFile={os.path.join(os.getcwd(), "img", "apuesta_total.ico")}
 Compression=lzma
 SolidCompression=yes
