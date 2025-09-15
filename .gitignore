@@ -1,3 +1,5 @@
 /myvenv
+/build
+/dist
 *.spec
 *.iss
