@@ -721,9 +721,6 @@
    'C:\\Users\\APUESTA '
    'TOTAL\\Documents\\2024\\py\\escaner_at-main\\resources.py',
    'PYMODULE'),
-  ('script',
-   'C:\\Users\\APUESTA TOTAL\\Documents\\2024\\py\\escaner_at-main\\script.py',
-   'PYMODULE'),
   ('selectors',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\selectors.py',
@@ -854,6 +851,32 @@
    'PYMODULE'),
   ('wia',
    'C:\\Users\\APUESTA TOTAL\\Documents\\2024\\py\\escaner_at-main\\wia.py',
+   'PYMODULE'),
+  ('widgets', '-', 'PYMODULE'),
+  ('widgets.escaneos', '-', 'PYMODULE'),
+  ('widgets.escaneos.widget_escaneo_especial',
+   'C:\\Users\\APUESTA '
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\widgets\\escaneos\\widget_escaneo_especial.py',
+   'PYMODULE'),
+  ('widgets.escaneos.widget_escaneo_general',
+   'C:\\Users\\APUESTA '
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\widgets\\escaneos\\widget_escaneo_general.py',
+   'PYMODULE'),
+  ('widgets.escaneos.widget_escaneo_simple',
+   'C:\\Users\\APUESTA '
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\widgets\\escaneos\\widget_escaneo_simple.py',
+   'PYMODULE'),
+  ('widgets.widget_inicio',
+   'C:\\Users\\APUESTA '
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\widgets\\widget_inicio.py',
+   'PYMODULE'),
+  ('widgets.widget_opciones',
+   'C:\\Users\\APUESTA '
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\widgets\\widget_opciones.py',
+   'PYMODULE'),
+  ('widgets.widget_pizarras',
+   'C:\\Users\\APUESTA '
+   'TOTAL\\Documents\\2024\\py\\escaner_at-main\\widgets\\widget_pizarras.py',
    'PYMODULE'),
   ('win32com',
    'C:\\Users\\APUESTA '

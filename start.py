@@ -12,9 +12,11 @@ from widgets.widget_pizarras import imprimir_pizarras
 """
 DISEÑO INICIAL DE LA VENTANA PRINCIPAL
 """
+VERSION = "1.2.1"
+
 root = tk.Tk()
 centrar_ventana(root, 400, 400) # Centramos la ventana principal justo despues de crearla
-root.title(f"Escáner AT")
+root.title(f"Escáner AT (v{VERSION})")
 root.iconbitmap(icon_path)
 root.resizable(False, False)
 
