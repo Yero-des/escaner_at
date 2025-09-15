@@ -2,6 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from datetime import datetime
 from resources import *
+from sql.db import inicializar_db
 from widgets.escaneos.widget_escaneo_especial import manejar_escaneo_especial
 from widgets.widget_opciones import *
 from widgets.widget_inicio import cambiar_carpeta_destino, seleccionar_carpeta_destino
@@ -9,9 +10,14 @@ from widgets.escaneos.widget_escaneo_general import manejar_escaneo_general
 from widgets.escaneos.widget_escaneo_simple import manejar_escaneo_simple
 from widgets.widget_pizarras import imprimir_pizarras
 
-VERSION = "1.2.2"
+VERSION = "1.3.0"
 
 def main():
+
+  """
+  INICIALIZACION DE BASE DE DATOS
+  """
+  inicializar_db()
 
   """
   DISEÑO INICIAL DE LA VENTANA PRINCIPAL
@@ -66,15 +72,15 @@ def main():
   menu_opciones = tk.Menu(menu_bar, tearoff=0)
   menu_opciones.add_command(
     label="Opciones principales",
-    command=lambda: configurar_opciones_principales(datos_compartidos)
+    command=lambda: configurar_opciones(datos_compartidos, "principal")
   )
   menu_opciones.add_command(
     label="Opciones especiales", 
-    command=lambda: configurar_opciones_especiales(datos_compartidos)
+    command=lambda: configurar_opciones(datos_compartidos, "especial")
   )
   menu_opciones.add_command(
     label="Promociones",
-    command=lambda: configurar_promociones(datos_compartidos)
+    command=lambda: configurar_opciones(datos_compartidos, "promocion")
   )
   menu_bar.add_cascade(label="Configuración", menu=menu_opciones) # Agregar submenú al menu "Configuración"
 
