@@ -63,20 +63,20 @@ def main():
   menu_bar = tk.Menu(root)
 
   # ====== Menú "Configuración" con submenú ======
-  # menu_opciones = tk.Menu(menu_bar, tearoff=0)
-  # menu_opciones.add_command(
-  #   label="Opciones principales",
-  #   command=lambda: configurar_opciones_principales(datos_compartidos)
-  # )
-  # menu_opciones.add_command(
-  #   label="Opciones especiales", 
-  #   command=lambda: configurar_opciones_especiales(datos_compartidos)
-  # )
-  # menu_opciones.add_command(
-  #   label="Promociones",
-  #   command=lambda: configurar_promociones(datos_compartidos)
-  # )
-  # menu_bar.add_cascade(label="Configuración", menu=menu_opciones) # Agregar submenú al menu "Configuración"
+  menu_opciones = tk.Menu(menu_bar, tearoff=0)
+  menu_opciones.add_command(
+    label="Opciones principales",
+    command=lambda: configurar_opciones_principales(datos_compartidos)
+  )
+  menu_opciones.add_command(
+    label="Opciones especiales", 
+    command=lambda: configurar_opciones_especiales(datos_compartidos)
+  )
+  menu_opciones.add_command(
+    label="Promociones",
+    command=lambda: configurar_promociones(datos_compartidos)
+  )
+  menu_bar.add_cascade(label="Configuración", menu=menu_opciones) # Agregar submenú al menu "Configuración"
 
   """"
   Menu carpetas contiene:
