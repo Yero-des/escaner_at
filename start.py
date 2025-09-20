@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 from datetime import datetime
 from resources import *
 from sql.db import inicializar_db
+from sql.controladores.opciones import restablecer_opciones
 from widgets.escaneos.widget_escaneo_especial import manejar_escaneo_especial
 from widgets.widget_opciones import *
 from widgets.widget_inicio import cambiar_carpeta_destino, seleccionar_carpeta_destino
@@ -81,6 +82,10 @@ def main():
   menu_opciones.add_command(
     label="Promociones",
     command=lambda: configurar_opciones(datos_compartidos, "promocion")
+  )
+  menu_opciones.add_command(
+    label="Restablecer opciones",
+    command=lambda: restablecer_opciones()
   )
   menu_bar.add_cascade(label="Configuración", menu=menu_opciones) # Agregar submenú al menu "Configuración"
 
