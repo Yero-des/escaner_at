@@ -2,7 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from datetime import datetime
 from resources import *
-from sql.db import inicializar_db
+from sql.db import datos_por_tipo, inicializar_db
 from sql.controladores.opciones import restablecer_opciones
 from widgets.escaneos.widget_escaneo_especial import manejar_escaneo_especial
 from widgets.widget_opciones import *
@@ -32,14 +32,7 @@ def main():
   """
   INICIALIZACION DE VARIABLES GLOBALES
   """
-  # Establecer un diccionario con los datos que seran compartidos entre funciones
-  nombres_especial = ["DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"]
   datos_compartidos = {
-    #
-    "nombres_principal": ["KASNET", "NIUBIZ", "REPORTE NIUBIZ", "CABALLOS", "LOTTINGO", "KURAX", "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"],
-    "opciones_web": ["JACKPOT", "VALE DE REGISTRO", "LUNES REGALON", "VIERNES DONATELO", "LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO", "VLT"],
-    "nombres_especial": nombres_especial,
-    "nombres_especial_const": nombres_especial.copy(),
     # Variables globales simple
     "root": root,
     "icon_path": icon_path,

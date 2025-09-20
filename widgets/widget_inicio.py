@@ -93,6 +93,8 @@ def cambiar_carpeta_destino(datos_compartidos, label_carpeta, label_carpeta_avis
     datos_compartidos["carpeta_destino_no_modificable"] = carpeta_destino_no_modificable
     datos_compartidos["carpeta_actual"] = carpeta_actual
 
+    messagebox.showinfo("Carpeta cambiada", f"Carpeta cambiada correctamente a:\n \"{carpeta_actual}\"")
+
   else:
     messagebox.showerror("Error", "Debes seleccionar una carpeta de destino.")
 

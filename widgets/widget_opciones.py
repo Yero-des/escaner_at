@@ -1,3 +1,4 @@
+from functools import partial
 import sqlite3
 import sys
 import os
@@ -5,22 +6,23 @@ import tkinter as tk
 import tkinter as tk
 from tkinter import ttk, messagebox
 from tkinter import messagebox, ttk
-from sql.controladores.opciones import actualizar_o_agregar_opcion, cargar_opciones_por_tipo, restablecer_opciones
+from sql.controladores.opciones import actualizar_o_agregar_opcion, cargar_opciones_por_tipo
 from resources import centrar_ventana_hija, icon_path
 
+"""
+VARIABLES GLOBALES
+"""
 dragged_item = None # Variable global para drag & drop
 
 def configurar_opciones(datos_compartidos, tipo):
 
-    """
-    VARIABLES GLOBALES
-    """
     root = datos_compartidos["root"]
-    datos = {}
+    datos = {} # Datos filtrados en formato diccionario
 
     """
     FUNCIONES DE FORMULARIO PRINCIPAL
     - activar_guardar: Activa el botón guardar
+    - reasignar_orden: Reasigna el orden despues de un drag & drop, eliminar o agregar
     - guardar_opciones: Guarda los cambios en la base de datos
     """
     def activar_guardar():
@@ -135,14 +137,14 @@ def configurar_opciones(datos_compartidos, tipo):
 
         # print("Nuevos datos:", datos)
         activar_guardar() # Activa el guardado
-        messagebox.showinfo("Agregado", f"El nombre '{nombre}' ha sido agregado.", parent=ventana_agregar)
         ventana_agregar.destroy()
+        messagebox.showinfo("Agregado", f"El nombre '{nombre}' ha sido agregado.", parent=ventana_opciones)
 
 
     """
     VENTANA OPCIONES
     """
-    ventana_opciones = tk.Toplevel(root)
+    ventana_opciones = tk.Toplevel(root, bg="darkgray")
     ventana_opciones.title(f"Opciones \"{tipo.capitalize()}es\"")
     centrar_ventana_hija(ventana_opciones, 350, 300, root) # LLamar funcion justo despues de crear la ventana
     ventana_opciones.iconbitmap(icon_path)
@@ -167,7 +169,7 @@ def configurar_opciones(datos_compartidos, tipo):
     tree.heading("Acciones", text="Acciones")
     tree.column("Nombre", width=220, anchor="w")
     tree.column("Acciones", width=100, anchor="center")
-    tree.pack(fill="both", expand=True, padx=8, pady=8)
+    tree.pack(fill="both", expand=True, padx=2, pady=2)
 
     datos = cargar_opciones_por_tipo(tipo=tipo)
 
@@ -206,7 +208,7 @@ def configurar_opciones(datos_compartidos, tipo):
             tree.move(dragged_item, '', tree.index(row_under_mouse))
 
     def on_drop(event):
-        global dragged_item, datos
+        global dragged_item
         if not dragged_item:
             return
         
@@ -216,8 +218,7 @@ def configurar_opciones(datos_compartidos, tipo):
         activar_guardar() # Activa el guardado
         dragged_item = None
 
-    def on_double_click(event):
-        global datos
+    def on_double_click(event, datos):
         col = tree.identify_column(event.x)
         row = tree.identify_row(event.y)
 
@@ -238,7 +239,7 @@ def configurar_opciones(datos_compartidos, tipo):
     tree.bind("<ButtonRelease-1>", on_drop, add='+')
 
     # Doble-clic eliminar
-    tree.bind("<Double-1>", on_double_click, add='+')
+    tree.bind("<Double-1>", partial(on_double_click, datos=datos), add='+')
 
     ventana_opciones.mainloop()
 

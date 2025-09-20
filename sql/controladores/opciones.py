@@ -1,7 +1,7 @@
 import sqlite3
 import tkinter as tk
 from tkinter import messagebox
-from sql.db import nombres_especial, nombres_principal, promociones, insertar_opciones
+from sql.db import datos_por_tipo, nombres_especial, nombres_principal, promociones, insertar_opciones
 
 # Carga opciones activas desde la base de datos y las devuelve como diccionario
 def cargar_opciones_por_tipo(tipo):
@@ -69,13 +69,7 @@ def restablecer_opciones():
 
   messagebox.showinfo("Opciones restablecidas", "Las opciones han sido restablecidas a sus valores por defecto.")
 
-"""
-Aquí iría la lógica para guardar los datos en la base de datos
-* Los datos con su id ya creado solo se modifican (porque llege a esta conclucion????)
-* Los datos nuevos se insertan con un nuevo id (Autogenerado en la DB)
-* En caso se quiera cerrar la ventana (root) sin hacer cambio debera aparece una 
-  ventana que diga "hay cambios sin guardar ¿desea salir sin guardar?"
-""" 
+# Logica que actualiza o agrega una opcion segun exista o no
 def actualizar_o_agregar_opcion(cursor, opcion):
 
   nombre_actual = opcion["nombre"]

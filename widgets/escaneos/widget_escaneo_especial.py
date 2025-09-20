@@ -1,4 +1,5 @@
 import os
+from sql.db import datos_por_tipo
 from wia import escanear_documento
 import tkinter as tk
 from tkinter import messagebox
@@ -13,7 +14,6 @@ def procesar_seleccion(ventana, datos_compartidos, datos_secundarios, unico=Fals
   carpeta_actual = datos_compartidos["carpeta_actual"]
   valor_especial = datos_compartidos["valor_especial"]
   carpeta_destino_no_modificable = datos_compartidos["carpeta_destino_no_modificable"]
-  nombres_especial_const = datos_compartidos["nombres_especial_const"]
   carpeta_actual = datos_compartidos["carpeta_actual"]
 
   combobox_web = datos_secundarios["combobox_web"].get()
@@ -27,7 +27,7 @@ def procesar_seleccion(ventana, datos_compartidos, datos_secundarios, unico=Fals
   if unico:
     nombres_especial.append("JUGADA")
   else:
-    nombres_especial.extend(nombres_especial_const)
+    nombres_especial.extend(datos_por_tipo("especial"))
 
   for nombre in nombres_especial:
     nombre_actual = nombre
@@ -64,7 +64,9 @@ def procesar_seleccion(ventana, datos_compartidos, datos_secundarios, unico=Fals
 def manejar_escaneo_especial(datos_compartidos):
 
   root = datos_compartidos["root"]
-  opciones_web = datos_compartidos["opciones_web"]
+
+  # Filtra y ordena por tipo "promocion" en db
+  nombres_promocion = datos_por_tipo("promocion")
 
   # Crear una ventana emergente para elegir opciones
   ventana_opciones = tk.Toplevel(root)
@@ -80,7 +82,7 @@ def manejar_escaneo_especial(datos_compartidos):
   tk.Label(ventana_opciones, text="Selecciona un nombre para el registro:").pack(padx=10, pady=5)
 
   # Crear el combobox con opciones para el nombre
-  combobox_web = ttk.Combobox(ventana_opciones, values=opciones_web)
+  combobox_web = ttk.Combobox(ventana_opciones, values=nombres_promocion)
   combobox_web.pack(padx=10, pady=5)
 
   # Establecer el valor por defecto

@@ -50,3 +50,21 @@ def inicializar_db():
 
   conn.commit()
   conn.close()
+
+def datos_por_tipo(tipo):
+  conn = sqlite3.connect("escaner.db")
+  cursor = conn.cursor()
+  
+  cursor.execute("""
+    SELECT nombre 
+    FROM opciones 
+    WHERE tipo = ? AND activo = 1
+    ORDER BY orden ASC
+  """, (tipo,))
+
+  # Extraer solo los nombres de las filas obtenidas
+  nombres = [fila[0] for fila in cursor.fetchall()]
+  print(nombres)
+
+  conn.close()
+  return nombres
