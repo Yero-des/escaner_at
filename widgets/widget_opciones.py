@@ -71,7 +71,7 @@ def configurar_opciones(datos_compartidos, tipo):
         ventana_agregar = tk.Toplevel(ventana_opciones)
         centrar_ventana_hija(ventana_agregar, 200, 80, ventana_opciones)
         ventana_agregar.title("Agregar opción")
-        # ventana_agregar.iconbitmap(icon_path)
+        ventana_agregar.iconbitmap(icon_path)
         ventana_agregar.resizable(False, False)
         ventana_agregar.grab_set()
         ventana_agregar.focus_force()
