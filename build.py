@@ -49,7 +49,7 @@ print(f"✅ version.txt generado con la versión {version}")
 # Ejecutar PyInstaller automáticamente
 subprocess.run([
   "pyinstaller",
-  "--onedir",
+  "--onefile",
   "--noconsole",
   "--name", "ESCANER AT",
   "--icon", "./img/apuesta_total.ico",
@@ -73,7 +73,6 @@ SetupIconFile={os.path.join(os.getcwd(), "img", "apuesta_total.ico")}
 Compression=lzma2/ultra64
 SolidCompression=no
 
-[Files]
 [Files]
 Source: "{os.path.join(os.getcwd(), "dist", "ESCANER AT.exe") }"; DestDir: "{{app}}"; Flags: ignoreversion
 Source: "{os.path.join(os.getcwd(), "build", "*") }"; DestDir: "{{app}}\\recursos"; Flags: recursesubdirs
