@@ -2,10 +2,11 @@ import sqlite3
 import tkinter as tk
 from tkinter import messagebox
 from sql.db import datos_por_tipo, nombres_especial, nombres_principal, promociones, insertar_opciones
+from sql.db import ruta_db
 
 # Carga opciones activas desde la base de datos y las devuelve como diccionario
 def cargar_opciones_por_tipo(tipo):
-  conn = sqlite3.connect("escaner.db")
+  conn = sqlite3.connect(ruta_db)
   cursor = conn.cursor()
 
   cursor.execute("""
@@ -39,7 +40,7 @@ def restablecer_opciones():
   if respuesta == False:
     return
 
-  conn = sqlite3.connect('escaner.db')
+  conn = sqlite3.connect(ruta_db)
   cursor = conn.cursor()
 
   # Aseguramos que la tabla exista

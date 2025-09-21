@@ -8,6 +8,7 @@ from tkinter import ttk, messagebox
 from tkinter import messagebox, ttk
 from sql.controladores.opciones import actualizar_o_agregar_opcion, cargar_opciones_por_tipo
 from resources import centrar_ventana_hija, icon_path
+from sql.db import ruta_db
 
 """
 VARIABLES GLOBALES
@@ -45,7 +46,7 @@ def configurar_opciones(datos_compartidos, tipo):
         - Se itera sobre el diccionario de datos modificando la base de datos
         - Se cierra la base de datos
         """
-        conn = sqlite3.connect("escaner.db")
+        conn = sqlite3.connect(ruta_db)
         cursor = conn.cursor()
 
         # Iterar sobre las filas obtenidas dentro de la base de datos

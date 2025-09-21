@@ -1,3 +1,4 @@
+import os
 import sqlite3
 
 # Listas de opciones por defecto (ahora solo strings)
@@ -11,6 +12,13 @@ nombres_principal = [
 promociones = [
   "MEGAJACKPOT", "GANADOR LOTTINGO", "WEB RETAIL", "CUMPLEAÑERO"
 ]
+
+"""
+Ruta de la base de datos en AppData\\Local
+"""
+base_path = os.path.join(os.environ["LOCALAPPDATA"], "EscanerAT")
+os.makedirs(base_path, exist_ok=True)
+ruta_db = os.path.join(base_path, "escaner.db")
 
 # Insertar registros por defecto
 def insertar_opciones(cursor, lista, tipo, inicializar=False):
@@ -29,7 +37,7 @@ def insertar_opciones(cursor, lista, tipo, inicializar=False):
 
 # Inicializar la base de datos con las tablas y datos por defecto
 def inicializar_db():
-  conn = sqlite3.connect('escaner.db')
+  conn = sqlite3.connect(ruta_db)
   cursor = conn.cursor()
 
   # Crear tabla con restricción de unicidad por (nombre, tipo)
@@ -52,7 +60,7 @@ def inicializar_db():
   conn.close()
 
 def datos_por_tipo(tipo):
-  conn = sqlite3.connect("escaner.db")
+  conn = sqlite3.connect(ruta_db)
   cursor = conn.cursor()
   
   cursor.execute("""
