@@ -5,7 +5,7 @@ nombres_especial = [
   "DNI FRONTAL", "DNI REVERSO", "JUGADA", "COMPROBANTE"
 ]
 nombres_principal = [
-  "KASNET", "NIUBIZ", "LOTTINGO",
+  "KASNET", "NIUBIZ", "REPORTE NIUBIZ", "LOTTINGO",
   "GOLDEN", "BETSHOP", "VALE DE DESCUENTO"
 ]
 promociones = [
@@ -64,7 +64,6 @@ def datos_por_tipo(tipo):
 
   # Extraer solo los nombres de las filas obtenidas
   nombres = [fila[0] for fila in cursor.fetchall()]
-  print(nombres)
 
   conn.close()
   return nombres

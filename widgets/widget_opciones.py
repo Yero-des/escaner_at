@@ -146,7 +146,7 @@ def configurar_opciones(datos_compartidos, tipo):
     """
     ventana_opciones = tk.Toplevel(root, bg="darkgray")
     ventana_opciones.title(f"Opciones \"{tipo.capitalize()}es\"")
-    centrar_ventana_hija(ventana_opciones, 350, 300, root) # LLamar funcion justo despues de crear la ventana
+    centrar_ventana_hija(ventana_opciones, 300, 250, root) # LLamar funcion justo despues de crear la ventana
     ventana_opciones.iconbitmap(icon_path)
     ventana_opciones.resizable(False, False)
     ventana_opciones.focus_force()
@@ -163,11 +163,10 @@ def configurar_opciones(datos_compartidos, tipo):
     """
     DISEÑO DE LA TABLA
     """
-    scroll_y = ttk.Scrollbar(ventana_opciones, orient="vertical") # Scrollbar vertical
-    tree = ttk.Treeview(ventana_opciones, columns=("Nombre", "Acciones"), show="headings", yscrollcommand=scroll_y.set)
+    tree = ttk.Treeview(ventana_opciones, columns=("Nombre", "Acciones"), show="headings")
     tree.heading("Nombre", text="Nombre")
     tree.heading("Acciones", text="Acciones")
-    tree.column("Nombre", width=220, anchor="w")
+    tree.column("Nombre", width=180, anchor="w")
     tree.column("Acciones", width=100, anchor="center")
     tree.pack(fill="both", expand=True, padx=2, pady=2)
 
@@ -233,6 +232,20 @@ def configurar_opciones(datos_compartidos, tipo):
             activar_guardar() # Activa el guardado
             # print("Nuevos datos:", datos)
 
+    def on_close(ventana):
+        # Revisar el estado del ítem "Guardar Cambios"
+        estado = menu_bar.entrycget("Guardar Cambios", "state")
+        if estado == "normal":
+            confirmar = messagebox.askyesno(
+                "Cambios sin guardar",
+                "Tienes cambios sin guardar.\n¿Seguro que deseas cerrar sin guardar?",
+                parent=ventana
+            )
+            if confirmar:
+                ventana.destroy()
+        else:
+            ventana.destroy()
+        
     # Eventos drag & drop
     tree.bind("<ButtonPress-1>", on_start_drag, add='+')
     tree.bind("<B1-Motion>", on_drag, add='+')
@@ -241,6 +254,8 @@ def configurar_opciones(datos_compartidos, tipo):
     # Doble-clic eliminar
     tree.bind("<Double-1>", partial(on_double_click, datos=datos), add='+')
 
+    # Manejar protocolo de cierre de ventana
+    ventana_opciones.protocol("WM_DELETE_WINDOW", lambda: on_close(ventana_opciones))
     ventana_opciones.mainloop()
 
 # Función para abrir la carpeta actual en el explorador de archivos
