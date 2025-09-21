@@ -22,6 +22,7 @@ def procesar_seleccion(ventana, datos_compartidos, datos_secundarios, unico=Fals
   nombres_especial = []
 
   nombre_carpeta = "PROMOCIONES" # Establece el nombre de la carpeta donde se guardaran los archivos
+  mensajes = ["Completado", "Todos los documentos han sido procesados."]
 
   # # Cambiar array de nombres segun tipo de escaneo
   if unico:
@@ -57,8 +58,12 @@ def procesar_seleccion(ventana, datos_compartidos, datos_secundarios, unico=Fals
       messagebox.showinfo("Cancelado", "El proceso ha sido cancelado.", parent=ventana)
       return
 
+  if len(nombres_especial) == 0:
+    mensajes[0] = "Sin opciones"
+    mensajes[1] = "No hay opciones para escanear"
+
   # Si ya se procesaron todos los documentos
-  messagebox.showinfo("Completado", "Todos los documentos han sido procesados.", parent=ventana)
+  messagebox.showinfo(mensajes[0], mensajes[1], parent=ventana)
 
 # Funcion para manejar el escaneo y saltar archivos de jackpot 
 def manejar_escaneo_especial(datos_compartidos):
