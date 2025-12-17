@@ -85,14 +85,18 @@ def main():
   """"
   Menu carpetas contiene:
   - Carpetas
-    * Ver carpeta
+    * Ver carpeta actual
     * Cambiar carpeta destino
   """
   # ====== Menú "Carpetas" con  submenú ======
   menu_carpetas = tk.Menu(menu_bar, tearoff=0)
   menu_carpetas.add_command(
-    label="Ver carpeta",
+    label="Ver reportes",
     command=lambda: ver_carpeta(datos_compartidos)
+  )
+  menu_carpetas.add_command(
+    label="Ver pizarras",
+    command=lambda: ver_pizarras(datos_compartidos)
   )
   menu_carpetas.add_command(
     label="Cambiar carpeta destino", 

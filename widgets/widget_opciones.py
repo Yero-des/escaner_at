@@ -264,5 +264,25 @@ def ver_carpeta(datos_compartidos):
 
     carpeta_destino = datos_compartidos["carpeta_destino"]
 
-    os.startfile(carpeta_destino)
+    if os.path.exists(carpeta_destino):
+        os.startfile(carpeta_destino)
+    else:
+        messagebox.showerror("Error", "No existe la carpeta de reportes en la ruta actual.")
+    return
+
+# Función para abrir la carpeta de pizarras actual en el explorador de archivos
+def ver_pizarras(datos_compartidos):
+
+    carpeta_actual = datos_compartidos["carpeta_actual"]
+    carpeta_destino_no_modificable = datos_compartidos["carpeta_destino_no_modificable"]
+
+    carpeta_pizarras = f"PIZARRAS {carpeta_actual[-10:]}"
+    carpeta_principal = os.path.dirname(carpeta_destino_no_modificable)
+    ruta_carpeta_pizarras = os.path.join(carpeta_principal, carpeta_pizarras)
+    
+    if os.path.exists(ruta_carpeta_pizarras):
+        os.startfile(ruta_carpeta_pizarras)
+    else:
+        messagebox.showerror("Error", "No existe la carpeta de pizarras en la ruta actual.")
+        
     return
