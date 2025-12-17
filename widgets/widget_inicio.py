@@ -50,7 +50,7 @@ def cambiar_carpeta_destino(datos_compartidos, label_carpeta, label_carpeta_avis
   # Extraer datos en variables diferentes
   anio = str(fecha_actual.year) # Año actual
   nombre_mes = fecha_actual.strftime("%B").upper()  # Nombre del mes en mayúsculas
-  fecha_formateada = fecha_actual.strftime("%d.%m.%y")  # Formato dd.mm.yy
+  fecha_formateada = fecha_actual.strftime("%d.%m.%Y")  # Formato dd.mm.yy
 
   # Obtener la ruta de "Documentos" de forma independiente al usuario
   ruta_raiz = Path.home() / "Documents"
@@ -114,7 +114,7 @@ def seleccionar_carpeta_destino(datos_compartidos):
   # Extraer datos en variables diferentes
   anio = str(fecha_actual.year) # Año actual
   nombre_mes = fecha_actual.strftime("%B").upper()  # Nombre del mes en mayúsculas
-  fecha_formateada = fecha_actual.strftime("%d.%m.%y")  # Formato dd.mm.yy
+  fecha_formateada = fecha_actual.strftime("%d.%m.%Y")  # Formato dd.mm.yy
 
   # Obtener la ruta de "Documentos" de forma independiente al usuario
   ruta_raiz = Path.home() / "Documents"
