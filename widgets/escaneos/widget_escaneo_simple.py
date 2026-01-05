@@ -28,6 +28,7 @@ def manejar_escaneo_simple(datos_compartidos):
   # Mensaje de instrucciones
   nombre_archivo_entry = tk.Entry(ventana_opciones)
   nombre_archivo_entry.pack(padx=10, pady=15)
+  nombre_archivo_entry.focus_set()
   
   def procesar_escaneo_simple(event=None):
 

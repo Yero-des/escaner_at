@@ -3,5 +3,7 @@
 /dist
 /version.txt
 /Output
+__pycache__
 *.spec
 *.iss
+*.db

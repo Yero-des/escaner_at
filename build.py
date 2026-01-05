@@ -70,8 +70,8 @@ DefaultDirName={{autopf}}\\Escaner_AT
 DefaultGroupName=Escaner AT
 OutputBaseFilename=Instalador Escaner AT v{version}
 SetupIconFile={os.path.join(os.getcwd(), "img", "apuesta_total.ico")}
-Compression=lzma
-SolidCompression=yes
+Compression=lzma2/ultra64
+SolidCompression=no
 
 [Files]
 Source: "{os.path.join(os.getcwd(), "dist", "ESCANER AT.exe") }"; DestDir: "{{app}}"; Flags: ignoreversion

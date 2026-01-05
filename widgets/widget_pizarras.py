@@ -5,12 +5,11 @@ from tkinter import messagebox
 
 # Función para imprimir todas las pizarras en la carpeta pizarras
 def imprimir_pizarras(datos_compartidos):
-
+  
   carpeta_actual = datos_compartidos["carpeta_actual"]
   carpeta_destino_no_modificable = datos_compartidos["carpeta_destino_no_modificable"]
 
-
-  carpeta_pizarras = f"PIZARRAS {carpeta_actual[-8:]}"
+  carpeta_pizarras = f"PIZARRAS {carpeta_actual[-10:]}"
   carpeta_principal = os.path.dirname(carpeta_destino_no_modificable)
   ruta_carpeta_pizarras = os.path.join(carpeta_principal, carpeta_pizarras)
 

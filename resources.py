@@ -120,7 +120,7 @@ T1 - YEROMI ZAVALA 20.06.25 (False)
 24.07.24 (False)
 """
 def es_carpeta_indexada(carpeta_actual):
-    fecha_actual = datetime.strftime(datetime.now(),'%d.%m.%y')
+    fecha_actual = datetime.strftime(datetime.now(),'%d.%m.%Y')
 
     formato_carpeta = fr"^T[123]\s-\s[A-Z]+\s[A-Z]+\s{re.escape(fecha_actual)}$"
     es_formato_correcto = re.match(formato_carpeta, carpeta_actual)

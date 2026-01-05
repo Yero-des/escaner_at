@@ -1,37 +1,288 @@
+from functools import partial
+import sqlite3
+import sys
 import os
 import tkinter as tk
-from tkinter import messagebox
-from resources import centrar_ventana_hija
+import tkinter as tk
+from tkinter import ttk, messagebox
+from tkinter import messagebox, ttk
+from sql.controladores.opciones import actualizar_o_agregar_opcion, cargar_opciones_por_tipo
+from resources import centrar_ventana_hija, icon_path
+from sql.db import ruta_db
 
-def configurar_opciones_principales(datos_compartidos):
+"""
+VARIABLES GLOBALES
+"""
+dragged_item = None # Variable global para drag & drop
 
-    # Extraer pantalla principal
+def configurar_opciones(datos_compartidos, tipo):
+
     root = datos_compartidos["root"]
-    
-    # Crear una ventana emergente para elegir opciones
-    ventana_opciones = tk.Toplevel(root)
-    centrar_ventana_hija(ventana_opciones, 300, 100, root)
+    datos = {} # Datos filtrados en formato diccionario
 
-    ventana_opciones.title("Datos de escaneo")
-    ventana_opciones.iconbitmap(datos_compartidos["icon_path"])
+    """
+    FUNCIONES DE FORMULARIO PRINCIPAL
+    - activar_guardar: Activa el botón guardar
+    - reasignar_orden: Reasigna el orden despues de un drag & drop, eliminar o agregar
+    - guardar_opciones: Guarda los cambios en la base de datos
+    """
+    def activar_guardar():
+        menu_bar.entryconfig("Guardar Cambios", state="normal")
+
+    def reasignar_orden(tree):
+        items = tree.get_children()
+
+        # Reasignar el orden en el diccionario
+        for idx, i in enumerate(items, start=1):
+            id_item = int(tree.item(i)["text"])
+            if id_item in datos:
+                datos[id_item]["orden"] = idx # Actualizar el orden segun la posición en el Treeview
+
+    def guardar_opciones(ventana, datos):
+
+        """
+        BASE DE DATOS
+        - Se apertura la base de datos 
+        - Se itera sobre el diccionario de datos modificando la base de datos
+        - Se cierra la base de datos
+        """
+        conn = sqlite3.connect(ruta_db)
+        cursor = conn.cursor()
+
+        # Iterar sobre las filas obtenidas dentro de la base de datos
+        for clave, opcion in datos.items():
+            try:
+                actualizar_o_agregar_opcion(cursor, opcion)
+            except Exception as e:
+                print(f"⚠️ Error al guardar clave {clave}: {e}")
+
+        conn.commit() # Guardar cambios
+        conn.close() # Cerramos la base de datos
+        messagebox.showinfo("Guardado", "Los cambios han sido guardados.", parent=ventana)
+        menu_bar.entryconfig("Guardar Cambios", state="disabled")
+
+    """
+    FUNCIONES DE VENTANA AGREGAR
+    - ventana_agregar_opcion: Crea la ventana para agregar una opción
+    - agregar_opcion: Lógica para agregar la opción al diccionario y actualizar el Treeview
+    """
+    def ventana_agregar_opcion(tipo):
+        
+        """
+        DISEÑO DE VENTANA AGREGAR
+        """
+        ventana_agregar = tk.Toplevel(ventana_opciones)
+        centrar_ventana_hija(ventana_agregar, 200, 80, ventana_opciones)
+        ventana_agregar.title("Agregar opción")
+        ventana_agregar.iconbitmap(icon_path)
+        ventana_agregar.resizable(False, False)
+        ventana_agregar.grab_set()
+        ventana_agregar.focus_force()
+
+        """
+        FRAME DE ENTRADA
+        """
+        frame_entrada = tk.Frame(ventana_agregar)
+        frame_entrada.pack(fill="both", padx=8, pady=8)
+        """
+        Frame de entrada contiene:
+        - Entrada de texto para nombre
+        - Botón agregar
+        """
+        entry_nombre = tk.Entry(frame_entrada)
+
+        # Comando para agregar al presionar la tecla Enter
+        entry_nombre.bind("<Return>", lambda event: agregar_opcion(datos, entry_nombre, ventana_agregar, tipo))
+        entry_nombre.pack(side="top", fill="x", expand=True)
+        entry_nombre.focus_set()
+
+        btn_add = tk.Button(frame_entrada, text="Agregar", command=lambda: agregar_opcion(datos, entry_nombre, ventana_agregar, tipo), width=10)
+        btn_add.pack(side="bottom", pady=6)
+
+        ventana_agregar.mainloop()
+
+    def agregar_opcion(datos, entry_nombre, ventana_agregar, tipo):
+        nombre = entry_nombre.get().strip().upper()
+        esta_inactivo = False
+        nuevo_id = 0
+
+        if not nombre:
+            messagebox.showwarning("Advertencia", "Ingrese un nombre.", parent=ventana_agregar)
+            return
+
+        # Validar duplicados (solo opciones activas)
+        for clave, info in datos.items():
+            # Si el nombre esta duplicado y esta activo se devuelve un error
+            if info["nombre"] == nombre and info["activo"] == 1:
+                messagebox.showerror("Error", f"El nombre '{nombre}' ya existe.", parent=ventana_agregar)
+                return
+            # Si el nombre esta duplicado pero esta inactivo se vuelve a activar
+            if info["nombre"] == nombre and info["activo"] == 0:
+                nuevo_id = clave
+                esta_inactivo = True
+
+        if not esta_inactivo:
+            nuevo_id = max(datos.keys(), default=0) + 1 # Crear nuevo ID (max actual + 1)
+        
+        datos[nuevo_id] = {
+            "nombre": nombre,
+            "orden": 0,
+            "tipo": tipo,
+            "activo": 1
+        } # Agregar o modificar el diccionario
+
+        tree.insert("", "end", text=str(nuevo_id), values=(nombre, "❌ Eliminar")) # Insertar en el Treeview
+        entry_nombre.delete(0, tk.END)
+
+        reasignar_orden(tree) # Funcion para reasignar el orden en el diccionario
+
+        # print("Nuevos datos:", datos)
+        activar_guardar() # Activa el guardado
+        ventana_agregar.destroy()
+        messagebox.showinfo("Agregado", f"El nombre '{nombre}' ha sido agregado.", parent=ventana_opciones)
+
+
+    """
+    VENTANA OPCIONES
+    """
+    ventana_opciones = tk.Toplevel(root, bg="darkgray")
+    ventana_opciones.title(f"Opciones \"{tipo.capitalize()}es\"")
+    centrar_ventana_hija(ventana_opciones, 300, 250, root) # LLamar funcion justo despues de crear la ventana
+    ventana_opciones.iconbitmap(icon_path)
     ventana_opciones.resizable(False, False)
     ventana_opciones.focus_force()
     ventana_opciones.grab_set()
 
-    # Botones y tabla del crud 
-    
+    """
+    MENU
+    """
+    menu_bar = tk.Menu(ventana_opciones)
+    menu_bar.add_command(label="Guardar Cambios", command=lambda: guardar_opciones(ventana_opciones, datos), state="disabled")
+    menu_bar.add_command(label="Agregar", command=lambda: ventana_agregar_opcion(tipo=tipo))
+    ventana_opciones.config(menu=menu_bar)
+
+    """
+    DISEÑO DE LA TABLA
+    """
+    tree = ttk.Treeview(ventana_opciones, columns=("Nombre", "Acciones"), show="headings")
+    tree.heading("Nombre", text="Nombre")
+    tree.heading("Acciones", text="Acciones")
+    tree.column("Nombre", width=180, anchor="w")
+    tree.column("Acciones", width=100, anchor="center")
+    tree.pack(fill="both", expand=True, padx=2, pady=2)
+
+    datos = cargar_opciones_por_tipo(tipo=tipo)
+
+    # Insertar en Treeview 
+    for id_opcion, info in datos.items():
+        if info["activo"] == 1:  # ✅ solo datos activos
+            tree.insert(
+                "",
+                "end",
+                text=str(id_opcion),
+                values=(info["nombre"], "❌ Eliminar")
+            )
+
+    """
+    FUNCIONES DE DRAG & DROP
+    - on_start_drag: Inicia el arrastre
+    - on_drag: Mueve el elemento arrastrado
+    - on_drop: Suelta el elemento y reasigna el orden
+    - on_double_click: Elimina el elemento (marca como inactivo)
+    """
+    def on_start_drag(event):
+        global dragged_item
+        col = tree.identify_column(event.x)
+        row = tree.identify_row(event.y)
+        if col == "#2":  # no arrastrar desde la columna acciones
+            dragged_item = None
+            return
+        dragged_item = row
+
+    def on_drag(event):
+        global dragged_item
+        if not dragged_item:
+            return
+        row_under_mouse = tree.identify_row(event.y)
+        if row_under_mouse and row_under_mouse != dragged_item:
+            tree.move(dragged_item, '', tree.index(row_under_mouse))
+
+    def on_drop(event):
+        global dragged_item
+        if not dragged_item:
+            return
+        
+        reasignar_orden(tree) # Funcion para reasignar el orden en el diccionario
+
+        # print("Nuevos datos:", datos)
+        activar_guardar() # Activa el guardado
+        dragged_item = None
+
+    def on_double_click(event, datos):
+        col = tree.identify_column(event.x)
+        row = tree.identify_row(event.y)
+
+        if col == "#2" and row:
+            id_item = int(tree.item(row)["text"])
+            tree.delete(row)
+            if id_item in datos:
+                datos[id_item]["activo"] = 0 # Marcar como inactivo
+                datos[id_item]["orden"] = 0 # Reiniciar orden al eliminar
+            
+            reasignar_orden(tree) # Funcion para reasignar el orden en el diccionario
+            activar_guardar() # Activa el guardado
+            # print("Nuevos datos:", datos)
+
+    def on_close(ventana):
+        # Revisar el estado del ítem "Guardar Cambios"
+        estado = menu_bar.entrycget("Guardar Cambios", "state")
+        if estado == "normal":
+            confirmar = messagebox.askyesno(
+                "Cambios sin guardar",
+                "Tienes cambios sin guardar.\n¿Seguro que deseas cerrar sin guardar?",
+                parent=ventana
+            )
+            if confirmar:
+                ventana.destroy()
+        else:
+            ventana.destroy()
+        
+    # Eventos drag & drop
+    tree.bind("<ButtonPress-1>", on_start_drag, add='+')
+    tree.bind("<B1-Motion>", on_drag, add='+')
+    tree.bind("<ButtonRelease-1>", on_drop, add='+')
+
+    # Doble-clic eliminar
+    tree.bind("<Double-1>", partial(on_double_click, datos=datos), add='+')
+
+    # Manejar protocolo de cierre de ventana
+    ventana_opciones.protocol("WM_DELETE_WINDOW", lambda: on_close(ventana_opciones))
     ventana_opciones.mainloop()
-
-def configurar_opciones_especiales(datos_compartidos):
-    messagebox.showinfo("Opción 2", "Ejecutando opción 2...")
-
-def configurar_promociones(datos_compartidos):
-    messagebox.showinfo("Opción 3", "Ejecutando opción 3...")
 
 # Función para abrir la carpeta actual en el explorador de archivos
 def ver_carpeta(datos_compartidos):
 
     carpeta_destino = datos_compartidos["carpeta_destino"]
 
-    os.startfile(carpeta_destino)
+    if os.path.exists(carpeta_destino):
+        os.startfile(carpeta_destino)
+    else:
+        messagebox.showerror("Error", "No existe la carpeta de reportes en la ruta actual.")
+    return
+
+# Función para abrir la carpeta de pizarras actual en el explorador de archivos
+def ver_pizarras(datos_compartidos):
+
+    carpeta_actual = datos_compartidos["carpeta_actual"]
+    carpeta_destino_no_modificable = datos_compartidos["carpeta_destino_no_modificable"]
+
+    carpeta_pizarras = f"PIZARRAS {carpeta_actual[-10:]}"
+    carpeta_principal = os.path.dirname(carpeta_destino_no_modificable)
+    ruta_carpeta_pizarras = os.path.join(carpeta_principal, carpeta_pizarras)
+    
+    if os.path.exists(ruta_carpeta_pizarras):
+        os.startfile(ruta_carpeta_pizarras)
+    else:
+        messagebox.showerror("Error", "No existe la carpeta de pizarras en la ruta actual.")
+        
     return
