@@ -11,7 +11,7 @@ from widgets.escaneos.widget_escaneo_general import manejar_escaneo_general
 from widgets.escaneos.widget_escaneo_simple import manejar_escaneo_simple
 from widgets.widget_pizarras import imprimir_pizarras
 
-VERSION = "1.3.0"
+VERSION = "1.4.0"
 
 def main():
 
@@ -24,7 +24,11 @@ def main():
   DISEÑO INICIAL DE LA VENTANA PRINCIPAL
   """
   root = tk.Tk()
-  centrar_ventana(root, 400, 400) # Centramos la ventana principal justo despues de crearla
+  config_root = {
+    'ancho': 500,
+    'alto': "auto"
+  }
+  centrar_ventana(root, ancho=config_root['ancho'], alto=config_root['alto']) # Centramos la ventana justo despues de crearla
   root.title(f"Escáner AT (v{VERSION})")
   root.iconbitmap(icon_path)
   root.resizable(False, False)
@@ -40,6 +44,7 @@ def main():
     "carpeta_destino_no_modificable": "",
     "carpeta_actual": "",
     "valor_especial": "JACKPOT 1",
+    "config_root": config_root
   }  
 
   # Cargar imagen
@@ -124,8 +129,8 @@ def main():
     * Aviso de formato incorrecto (si aplica)
   """
   # Etiqueta imagen "Apuesta total"
-  label_imagen = tk.Label(frame_contenedor, image=imagen, borderwidth=0, highlightthickness=0)
-  label_imagen.grid(row=0, column=0) 
+  label_imagen = tk.Label(frame_contenedor, image=imagen, bg="#000000", borderwidth=0, highlightthickness=0)
+  label_imagen.pack(fill="x")
 
   # ====== Tomar datos de pantalla emergente para seleccionar carpeta ======
   if seleccionar_carpeta_destino(datos_compartidos):  
@@ -143,20 +148,19 @@ def main():
     text=datetime.strftime(datetime.now(),'%d/%m/%Y %H:%M'), # Extraer fecha y hora actual
     font=("Arial", 10, "bold") # Fuente de 10px
   )
-  label_fecha.grid(row=1, column=0, pady=5, padx=5)
+  label_fecha.pack(fill="x", pady=5)
 
   # Etiqueta de carpeta actual
   label_carpeta = tk.Label(frame_contenedor, text=datos_compartidos["carpeta_actual"], font=("Arial", 12), fg=(carpeta_hab))  # Fuente de 10px
-  label_carpeta.grid(row=2, column=0, pady=5)
+  label_carpeta.pack(fill="x")
 
   # Etiqueta de aviso de formato incorrecto
   label_carpeta_aviso = tk.Label(frame_contenedor, text="La fecha o formato es incorrecto", font=("Arial", 8, "italic"), fg=("gray"))  # Fuente de 10px
-  label_carpeta_aviso.grid(row=3, column=0, pady=2)
-  label_carpeta_aviso.grid_remove()  # Ocultar la etiqueta inicialmente
+  label_carpeta_aviso.pack(fill="x")
+  label_carpeta_aviso.pack_forget()  # Ocultar la etiqueta inicialmente
 
   if not es_carpeta_correcta:
-    centrar_ventana(root, 400, 420)
-    label_carpeta_aviso.grid()  # Mostrar la etiqueta si la carpeta es incorrecta
+    label_carpeta_aviso.pack()  # Mostrar la etiqueta si la carpeta es incorrecta
 
   """
   DISEÑO DE LOS BOTONES DE LA VENTANA PRINCIPAL
@@ -179,6 +183,9 @@ def main():
 
   btn_jackpot = tk.Button(frame_superior, text="Escaneo especial", command= lambda: manejar_escaneo_especial(datos_compartidos), width=15)
   btn_jackpot.pack(side="left", padx=10)
+  
+  btn_formatos = tk.Button(frame_superior, text="Imprimir formatos", command=print(""), width=15)
+  btn_formatos.pack(side="left", padx=10)
 
   # Subframe inferior - 2 botones centrados
   frame_inferior = tk.Frame(frame_botones)
@@ -191,6 +198,9 @@ def main():
   """
   btn_simple = tk.Button(frame_inferior, text="Escaneo simple", command= lambda: manejar_escaneo_simple(datos_compartidos), width=15)
   btn_simple.pack(side="left", padx=10)
+  
+  btn_clientes = tk.Button(frame_inferior, text="Ver clientes", command=print(""), width=15)
+  btn_clientes.pack(side="left", padx=10)
 
   btn_imprimir = tk.Button(frame_inferior, text="Imprimir pizarras", command= lambda: imprimir_pizarras(datos_compartidos), width=15)
   btn_imprimir.pack(side="left", padx=10)
@@ -199,6 +209,7 @@ def main():
   actualizar_reloj(root, label=label_fecha)
 
   # Iniciar el bucle de la aplicación
+  centrar_ventana(root, ancho=config_root['ancho'], alto=config_root['alto']) # Centramos la ventana principal al cargar recursos
   root.mainloop()
 
 if __name__ == "__main__":

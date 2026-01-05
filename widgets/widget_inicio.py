@@ -39,6 +39,7 @@ def verificar_o_crear_ruta(ruta_base, carpeta1, carpeta2, carpeta3):
 def cambiar_carpeta_destino(datos_compartidos, label_carpeta, label_carpeta_aviso=None):
    
   root = datos_compartidos["root"]
+  config_root = datos_compartidos["config_root"]
   carpeta_destino = ""
   carpeta_destino_no_modificable = ""
   carpeta_actual = ""
@@ -78,13 +79,13 @@ def cambiar_carpeta_destino(datos_compartidos, label_carpeta, label_carpeta_avis
 
     if es_carpeta_correcta and label_carpeta_aviso.winfo_ismapped():
 
-      centrar_ventana(root, 400, 400)
-      label_carpeta_aviso.grid_remove()
+      label_carpeta_aviso.pack_forget()
+      centrar_ventana(root, ancho=config_root['ancho'], alto=config_root['alto'])
 
     elif not es_carpeta_correcta and not label_carpeta_aviso.winfo_ismapped():
 
-      centrar_ventana(root, 400, 420)
-      label_carpeta_aviso.grid()
+      label_carpeta_aviso.pack()
+      centrar_ventana(root, ancho=config_root['ancho'], alto=config_root['alto'])
 
     label_carpeta.config(text=carpeta_actual, fg=(carpeta_hab))
 
