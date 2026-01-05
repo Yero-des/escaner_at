@@ -26,20 +26,26 @@ def actualizar_reloj(root, label):
         return
 
 def centrar_ventana(ventana, ancho, alto):
-
     ventana.withdraw()  # Ocultar mientras se configura
 
-    # Obtener medidas de pantalla
+    # Forzar a que Tkinter calcule el tamaño real
+    ventana.update_idletasks()
+
     screen_width = ventana.winfo_screenwidth()
-
-    # Calcular posición centrada
     screen_height = ventana.winfo_screenheight()
-    x = (screen_width - ancho) // 2
-    y = (screen_height - alto) // 2
-    
-    ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
 
-    ventana.deiconify() # Mostrar la ventana después de configurar
+    if alto == "auto":
+        # Obtener altura calculada automáticamente
+        alto_real = ventana.winfo_reqheight()
+        x = (screen_width - ancho) // 2
+        y = (screen_height - alto_real) // 2
+        ventana.geometry(f"{ancho}x{alto_real}+{x}+{y}")
+    else:
+        x = (screen_width - ancho) // 2
+        y = (screen_height - alto) // 2
+        ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
+
+    ventana.deiconify()  # Mostrar la ventana
 
 def centrar_ventana_hija(ventana, ancho, alto, padre):
 
