@@ -9,7 +9,7 @@ from widgets.widget_opciones import *
 from widgets.widget_inicio import cambiar_carpeta_destino, seleccionar_carpeta_destino
 from widgets.escaneos.widget_escaneo_general import manejar_escaneo_general
 from widgets.escaneos.widget_escaneo_simple import manejar_escaneo_simple
-from widgets.widget_pizarras import imprimir_pizarras
+from widgets.widget_impresiones import imprimir_pizarras, imprimir_formatos
 
 VERSION = "1.4.0"
 
@@ -177,6 +177,7 @@ def main():
   Frame superior contiene:
   - Boton escaneo general
   - Boton escaneo especial
+  - Boton escaneo simple
   """
   btn_escanear = tk.Button(frame_superior, text="Escaneo general", command= lambda: manejar_escaneo_general(datos_compartidos), width=15)
   btn_escanear.pack(side="left", padx=10)
@@ -184,8 +185,8 @@ def main():
   btn_jackpot = tk.Button(frame_superior, text="Escaneo especial", command= lambda: manejar_escaneo_especial(datos_compartidos), width=15)
   btn_jackpot.pack(side="left", padx=10)
   
-  btn_formatos = tk.Button(frame_superior, text="Imprimir formatos", command=print(""), width=15)
-  btn_formatos.pack(side="left", padx=10)
+  btn_simple = tk.Button(frame_superior, text="Escaneo simple", command= lambda: manejar_escaneo_simple(datos_compartidos), width=15)
+  btn_simple.pack(side="left", padx=10)
 
   # Subframe inferior - 2 botones centrados
   frame_inferior = tk.Frame(frame_botones)
@@ -193,14 +194,11 @@ def main():
 
   """"
   Frame inferior contiene:
-  - Boton escaneo simple
+  - Boton imprimir formatos
   - Boton imprimir pizarras
   """
-  btn_simple = tk.Button(frame_inferior, text="Escaneo simple", command= lambda: manejar_escaneo_simple(datos_compartidos), width=15)
-  btn_simple.pack(side="left", padx=10)
-  
-  btn_clientes = tk.Button(frame_inferior, text="Ver clientes", command=print(""), width=15)
-  btn_clientes.pack(side="left", padx=10)
+  btn_formatos = tk.Button(frame_inferior, text="Imprimir formatos", command=lambda: imprimir_formatos(), width=15)
+  btn_formatos.pack(side="left", padx=10)
 
   btn_imprimir = tk.Button(frame_inferior, text="Imprimir pizarras", command= lambda: imprimir_pizarras(datos_compartidos), width=15)
   btn_imprimir.pack(side="left", padx=10)

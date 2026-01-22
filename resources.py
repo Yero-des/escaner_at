@@ -3,6 +3,7 @@ import os
 import re
 import tkinter as tk
 from datetime import datetime
+from pathlib import Path
 
 def resource_path(relative_path):
     """Encuentra el recurso empaquetado o en el directorio de desarrollo."""
@@ -139,3 +140,9 @@ def es_carpeta_indexada(carpeta_actual):
 # Carga el icono usando la ruta adaptada
 icon_path = resource_path("img/apuesta_total.ico")
 img_path = resource_path("img/logo_apuesta_total.png")
+formatos_dir = Path(resource_path("img/formatos"))
+
+formatos_paths = [
+    str(p) for p in formatos_dir.iterdir()
+    if p.suffix.lower() in {".png", ".jpg", ".jpeg", ".ico"}
+]

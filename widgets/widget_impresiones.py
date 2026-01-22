@@ -2,6 +2,7 @@ import os
 import re
 from wia import imprimir_documento
 from tkinter import messagebox
+from resources import formatos_paths
 
 # Función para imprimir todas las pizarras en la carpeta pizarras
 def imprimir_pizarras(datos_compartidos):
@@ -29,6 +30,11 @@ def imprimir_pizarras(datos_compartidos):
   if not ruta_archivos:
       messagebox.showinfo("Sin Archivos", f'No se encontraron imágenes en la carpeta: "{ruta_carpeta_pizarras}"')
       return
+    
+  # 🔽 Ordenar por fecha (más reciente primero)
+  ruta_archivos.sort(
+      key=lambda ruta: os.path.getmtime(ruta),
+  )
 
   for ruta_archivo in ruta_archivos:
 
@@ -37,7 +43,7 @@ def imprimir_pizarras(datos_compartidos):
     nombre_archivo_actual = re.split(r"[\\/]", ruta_archivo_actual)[-1] # Tomanos el ultimo elemento de la ruta
 
     respuesta = messagebox.askyesnocancel(
-      "Imprimir Documento",
+      "Imprimir Pizarras",
       f"¿Deseas imprimir {nombre_archivo_actual}?\n(Sí para escanear, No para saltar)"
     )
 
@@ -47,5 +53,26 @@ def imprimir_pizarras(datos_compartidos):
 
     if respuesta:
       imprimir_documento(ruta_archivo_actual)
+
+  # messagebox.showinfo("Completado", "Todos los documentos han sido procesados.")
+  
+# Función para imprimir todos los formatos de NIUBIZ y KASNET
+def imprimir_formatos():
+  
+  for formato in formatos_paths:
+    # Tomamos el nombre actual
+    nombre_archivo_actual = re.split(r"[\\/]", formato)[-1] # Tomanos el ultimo elemento de la ruta
+
+    respuesta = messagebox.askyesnocancel(
+      "Imprimir Formatos",
+      f"¿Deseas imprimir {nombre_archivo_actual}?\n(Sí para escanear, No para saltar)"
+    )
+
+    if respuesta is None:
+      messagebox.showinfo("Cancelado", "El proceso ha sido cancelado.")
+      return
+
+    if respuesta:
+      imprimir_documento(formato)
 
   # messagebox.showinfo("Completado", "Todos los documentos han sido procesados.")
