@@ -56,6 +56,7 @@ subprocess.run([
   "--version-file", "version.txt",
   "--add-data", "./img/logo_apuesta_total.png;img",
   "--add-data", "./img/apuesta_total.ico;img",
+  "--add-data", "./img/formatos;img/formatos",
   "start.py"
 ])
 
