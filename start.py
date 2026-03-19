@@ -139,8 +139,15 @@ def main():
     return # Salir del programa si no se selecciona ninguna carpeta
 
   es_carpeta_correcta = es_carpeta_indexada(datos_compartidos["carpeta_actual"]) # Verificar si el formato de la carpeta es correcto
-  carpeta_hab = "red" if es_carpeta_correcta else "gray" # Color de la etiqueta segun formato correcto o no
-
+  carpeta_hab = ""
+  
+  if es_carpeta_correcta and datos_compartidos["carpeta_actual"].startswith('T1'):
+    carpeta_hab = "red"
+  elif es_carpeta_correcta and datos_compartidos["carpeta_actual"].startswith('T2'):
+    carpeta_hab = "blue"
+  else:
+    carpeta_hab = "gray"
+    
   # ====== Resto de etiquetas ======
 
   # Etiqueta de fecha y hora actual

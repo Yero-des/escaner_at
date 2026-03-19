@@ -30,16 +30,16 @@ def procesar_seleccion(ventana, datos_compartidos, datos_secundarios, unico=Fals
   else:
     nombres_especial.extend(datos_por_tipo("especial"))
 
+  valor_especial = asignar_numero_mas_reciente(
+    ruta_origen=carpeta_destino_no_modificable,
+    ruta_actual=carpeta_actual,
+    web=combobox_web,
+    nombre_carpeta=nombre_carpeta,
+    tipo=combobox_numero
+  )
+  
   for nombre in nombres_especial:
     nombre_actual = nombre
-
-    valor_especial = asignar_numero_mas_reciente(
-      ruta_origen=carpeta_destino_no_modificable,
-      ruta_actual=carpeta_actual,
-      web=combobox_web,
-      nombre_carpeta=nombre_carpeta,
-      tipo=combobox_numero
-    )
 
     # Preguntar al usuario si desea escanear o saltar
     respuesta = messagebox.askyesnocancel(
@@ -91,7 +91,7 @@ def manejar_escaneo_especial(datos_compartidos):
   combobox_web.pack(padx=10, pady=5)
 
   # Establecer el valor por defecto
-  combobox_web.set("JACKPOT")
+  combobox_web.set(nombres_promocion[0])
 
   # Mensaje de instrucciones para el número
   tk.Label(ventana_opciones, text="Selecciona un número para el registro:").pack(padx=10, pady=5)
@@ -102,7 +102,7 @@ def manejar_escaneo_especial(datos_compartidos):
   combobox_numero.pack(padx=10, pady=5)
 
   # Establecer el valor por defecto
-  combobox_numero.set("AUTO")
+  combobox_numero.set(opciones_numero[0])
 
   frame_botones = tk.Frame(ventana_opciones)
   frame_botones.pack(pady=15)
