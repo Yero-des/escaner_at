@@ -62,6 +62,7 @@ def imprimir_formatos():
   for formato in formatos_paths:
     # Tomamos el nombre actual
     nombre_archivo_actual = re.split(r"[\\/]", formato)[-1] # Tomanos el ultimo elemento de la ruta
+    nombre_archivo_actual = nombre_archivo_actual.split('_')[1]
 
     respuesta = messagebox.askyesnocancel(
       "Imprimir Formatos",

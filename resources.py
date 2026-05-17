@@ -146,3 +146,4 @@ formatos_paths = [
     str(p) for p in formatos_dir.iterdir()
     if p.suffix.lower() in {".png", ".jpg", ".jpeg", ".ico"}
 ]
+formatos_paths.sort()

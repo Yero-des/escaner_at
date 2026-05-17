@@ -11,7 +11,7 @@ from widgets.escaneos.widget_escaneo_general import manejar_escaneo_general
 from widgets.escaneos.widget_escaneo_simple import manejar_escaneo_simple
 from widgets.widget_impresiones import imprimir_pizarras, imprimir_formatos
 
-VERSION = "1.4.0"
+VERSION = "1.4.1"
 
 def main():
 
