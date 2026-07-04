@@ -5,6 +5,8 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 from resources import asignar_numero_mas_reciente, centrar_ventana_hija, icon_path
+from widgets.widget_opciones import ver_carpeta
+import winsound
 
 # Función para procesar la selección
 def procesar_seleccion(ventana, datos_compartidos, datos_secundarios, unico=False):
@@ -38,6 +40,14 @@ def procesar_seleccion(ventana, datos_compartidos, datos_secundarios, unico=Fals
     tipo=combobox_numero
   )
   
+  if len(nombres_especial) == 0:
+    mensajes[0] = "Sin opciones"
+    mensajes[1] = "No hay opciones para escanear"
+
+    # Si ya se procesaron todos los documentos
+    messagebox.showinfo(mensajes[0], mensajes[1], parent=ventana)
+    return
+  
   for nombre in nombres_especial:
     nombre_actual = nombre
 
@@ -57,14 +67,13 @@ def procesar_seleccion(ventana, datos_compartidos, datos_secundarios, unico=Fals
     if respuesta == None:
       messagebox.showinfo("Cancelado", "El proceso ha sido cancelado.", parent=ventana)
       return
+    
+  winsound.MessageBeep()
+  respuesta = messagebox.askyesno("Completado", "Todos los documentos han sido procesados, desea ver los reportes actualizados?", parent=ventana)
+  if respuesta:
+    ver_carpeta(datos_compartidos)
 
-  if len(nombres_especial) == 0:
-    mensajes[0] = "Sin opciones"
-    mensajes[1] = "No hay opciones para escanear"
-
-  # Si ya se procesaron todos los documentos
-  messagebox.showinfo(mensajes[0], mensajes[1], parent=ventana)
-
+ 
 # Funcion para manejar el escaneo y saltar archivos de jackpot 
 def manejar_escaneo_especial(datos_compartidos):
 

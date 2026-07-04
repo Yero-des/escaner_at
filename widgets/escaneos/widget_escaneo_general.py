@@ -1,6 +1,8 @@
 from tkinter import messagebox
 from sql.db import datos_por_tipo
 from wia import escanear_documento
+from widgets.widget_opciones import ver_carpeta
+import winsound
 
 # Función que maneja el escaneo general
 def manejar_escaneo_general(datos_compartidos):
@@ -12,6 +14,12 @@ def manejar_escaneo_general(datos_compartidos):
 
   # Filtra y ordena por tipo "principal" en db
   nombres_principal = datos_por_tipo("principal")
+  
+  if len(nombres_principal) == 0:
+    mensajes[0] = "Sin opciones"
+    mensajes[1] = "No hay opciones para escanear"
+
+    messagebox.showinfo(mensajes[0], mensajes[1])
 
   for nombre in nombres_principal:
     nombre_actual = nombre
@@ -26,10 +34,8 @@ def manejar_escaneo_general(datos_compartidos):
       messagebox.showinfo("Cancelado", "El proceso ha sido cancelado.")
       return
   
-  if len(nombres_principal) == 0:
-    mensajes[0] = "Sin opciones"
-    mensajes[1] = "No hay opciones para escanear"
-
-
-  messagebox.showinfo(mensajes[0], mensajes[1])
+  winsound.MessageBeep()
+  respuesta = messagebox.askyesno("Completado", "Todos los documentos han sido procesados, desea ver los reportes actualizados?")
+  if respuesta:
+    ver_carpeta(datos_compartidos)
     

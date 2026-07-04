@@ -9,9 +9,9 @@ from widgets.widget_opciones import *
 from widgets.widget_inicio import cambiar_carpeta_destino, seleccionar_carpeta_destino
 from widgets.escaneos.widget_escaneo_general import manejar_escaneo_general
 from widgets.escaneos.widget_escaneo_simple import manejar_escaneo_simple
-from widgets.widget_impresiones import imprimir_pizarras, imprimir_formatos
+from widgets.widget_impresiones import imprimir_pizarras, administrar_formatos
 
-VERSION = "1.4.1"
+VERSION = "1.4.5"
 
 def main():
 
@@ -204,7 +204,7 @@ def main():
   - Boton imprimir formatos
   - Boton imprimir pizarras
   """
-  btn_formatos = tk.Button(frame_inferior, text="Imprimir formatos", command=lambda: imprimir_formatos(), width=15)
+  btn_formatos = tk.Button(frame_inferior, text="Ver Formatos", command=lambda: administrar_formatos(datos_compartidos), width=15)
   btn_formatos.pack(side="left", padx=10)
 
   btn_imprimir = tk.Button(frame_inferior, text="Imprimir pizarras", command= lambda: imprimir_pizarras(datos_compartidos), width=15)
